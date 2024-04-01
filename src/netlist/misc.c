@@ -9,37 +9,30 @@ static char copyright[] = "Copyright (C) 1993 Mentor Graphics Corporation";
 
 extern ep_name *ep_getname();
 
-library *findlibrary(name)
-char *name;
+library *findlibrary(const char *name)
 {
 	return((library *)hashfind(&libhash, name));
 }
 
-cell *findcell(lp, name)
-library *lp;
-char *name;
+cell *findcell(library *lp, const char *name)
 {
 	if(!lp) return(NIL);
 	return((cell *)hashfind(&lp->cellhash, name));
 }
 
-view *findview(cellp, name)
-cell *cellp;
-char *name;
+view *findview(cell* cellp, const char *name)
 {
 	if(!cellp) return(NIL);
 	return((view *)hashfind(&cellp->viewhash, name));
 }
 
-void deletenet(np)
-net *np;
+void deletenet(net *np)
 {
 	hashdelete(&np->owner->u.nl.nethash, np);
 	u_free((char *)np);
 }
 
-void deleteinstance(ip)
-instance *ip;
+void deleteinstance(instance *ip)
 {
 	conn *ptp;
 	for(ptp = ip->ports; ptp; ptp=ptp->inext) {
@@ -54,17 +47,14 @@ instance *ip;
 	u_free((char *)ip);
 }
 
-void hookup(ptp, np)
-conn *ptp;
-net *np;
+void hookup(conn *ptp, net *np)
 {
 	ptp->np = np;
 	ptp->nnext = np->conns;
 	np->conns = ptp;
 }
 
-void unhook(ptp)
-conn *ptp;
+void unhook(conn *ptp)
 {
 	net *np;
 	conn **cnpp;
@@ -75,8 +65,7 @@ conn *ptp;
 	ptp->np = NIL;
 }
 
-void mergenets(tonp, fromnp)
-net *tonp, *fromnp;
+void mergenets(net *tonp, net *fromnp)
 {
 	conn *cnp;
 
@@ -90,8 +79,7 @@ net *tonp, *fromnp;
 	deletenet(fromnp);
 }
 
-setprimtype(vp)
-view *vp;
+void setprimtype(view *vp)
 {
 	char *cp, *cname;
 	int len, ch;
@@ -144,8 +132,7 @@ view *vp;
 	}
 }
 
-net *addnet(vp)
-view *vp;
+net *addnet(view *vp)
 {
 	char buf[16];
 	static int nid = 0;
@@ -162,9 +149,7 @@ view *vp;
 	return(np);
 }
 
-instance *addinstance(vp, instof)
-view *vp;
-view *instof;
+instance *addinstance(view *vp, view *instof)
 {
 	instance *ip, *pip;
 	hashtable *ph;
@@ -198,8 +183,7 @@ view *instof;
 	return(ip);
 }
 
-fixncinsthash(ht)
-hashtable *ht;
+void fixncinsthash(hashtable *ht)
 {
 	conn *ptp;
 	instance *ip;
@@ -218,8 +202,7 @@ hashtable *ht;
 	}
 }
 
-fixnc(vp)
-view *vp;
+void fixnc(view *vp)
 {
 	/* if the library is external then ports may be legally unconnected */
 	if(vp->cellp->lp->external) return;
@@ -227,8 +210,7 @@ view *vp;
 	fixncinsthash(&vp->u.nl.insthash);
 }
 
-int isprimitive(vp)
-view *vp;
+int isprimitive(view *vp)
 {
 	return(vp->cellp->lp->external);
 }

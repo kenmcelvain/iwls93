@@ -5,8 +5,7 @@ static char copyright[] = "Copyright (C) 1993 Mentor Graphics Corporation";
 
 #include "nets.h"
 
-void dissolve(tip)
-instance *tip;
+void dissolve(instance *tip)
 {
 	hashtable *ht;
 	instance *ip, *pip, *cip;
@@ -48,9 +47,7 @@ instance *tip;
 	deleteinstance(tip);
 }
 
-flatten(vp, testfunc)
-view *vp;
-int (*testfunc)();
+void flatten(view *vp, int (*testfunc)())
 {
 	instance *dissolve_list;
 	int dissolved_one;

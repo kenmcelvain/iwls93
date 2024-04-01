@@ -7,7 +7,7 @@ static char copyright[] = "Copyright (C) 1993 Mentor Graphics Corporation";
 
 cell inportcell, outportcell, biportcell;
 
-netlist_init()
+void netlist_init(void)
 {
 	hashinit(&libhash);
 

@@ -3,7 +3,6 @@ static char rcsid[] = "$Header: edif_actions.c,v 1.2 93/02/22 12:04:48 kenm Exp 
 static char copyright[] = "Copyright (C) 1993 Mentor Graphics Corporation";
 #endif
 
-#include <varargs.h>
 #include "nets.h"
 
 int ex_verbose = FALSE;
@@ -14,33 +13,27 @@ static view *curview = NIL;
 static int viewredef = FALSE;
 static net *curnet = NIL;
 
-/*VARARGS*/
-void dprintf(va_alist)
-va_dcl
+static void ex_dprintf(const char *fmt, ...)
 {
 	va_list args;
-	char *fmt;
 
-	va_start(args);
+	va_start(args, fmt);
 	if(ex_verbose) {
 		fprintf(stderr, "DBG: ");
-		fmt = va_arg(args, char *);
 		vfprintf(stderr, fmt, args);
 		fflush(stderr);
 	}
 	va_end(args);
 }
 
-int ex_startlibrary(libtype, libname)
-char *libtype;
-char *libname;
+int ex_startlibrary(const char *libtype, const char *libname)
 {
 	library *lp;
-	dprintf("Starting library %s(%s)\n", libname, libtype);
+	ex_dprintf("Starting library %s(%s)\n", libname, libtype);
 	lp = (library *)hashfind(&libhash, libname);
 	if(!lp) {
 		lp = ZTNEW(library, 1);
-		lp->h.name = libname;
+		lp->h.name = u_strsave(libname);
 		hashinit(&lp->cellhash);
 		hashinsert(&libhash, lp);
 		lp->external = !strcasecmp(libtype, "external");
@@ -49,11 +42,10 @@ char *libname;
 	return(SUCCESS);
 }
 
-int ex_endlibrary(plist)
-property *plist;
+int ex_endlibrary(property *plist)
 {
 	property *p;
-	dprintf("Ending library %s\n", curlib->h.name);
+	ex_dprintf("Ending library %s\n", curlib->h.name);
 	while(plist) {
 		p = plist;
 		plist = p->next;
@@ -64,15 +56,14 @@ property *plist;
 	return(SUCCESS);
 }
 
-int ex_startcell(cellname)
-char *cellname;
+int ex_startcell(const char *cellname)
 {
 	cell *cellp;
-	dprintf("Starting cell %s\n", cellname);
+	ex_dprintf("Starting cell %s\n", cellname);
 	cellp = (cell *)hashfind(&curlib->cellhash, cellname);
 	if(!cellp) {
 		cellp = ZTNEW(cell, 1);
-		cellp->h.name = cellname;
+		cellp->h.name = u_strsave(cellname);
 		cellp->lp = curlib;
 		hashinit(&cellp->viewhash);
 		hashinsert(&curlib->cellhash, cellp);
@@ -81,11 +72,10 @@ char *cellname;
 	return(SUCCESS);
 }
 
-int ex_endcell(plist)
-property *plist;
+int ex_endcell(property *plist)
 {
 	property *p;
-	dprintf("Ending cell %s\n", curcell->h.name);
+	ex_dprintf("Ending cell %s\n", curcell->h.name);
 	while(plist) {
 		p = plist;
 		plist = p->next;
@@ -96,23 +86,21 @@ property *plist;
 	return(SUCCESS);
 }
 
-int ex_design(designname, libname, cellname)
-char *designname, *libname, *cellname;
+int ex_design(const char *designname, const char *libname, const char *cellname)
 {
-	dprintf("design %s (cellref %s (libraryref %s))\n",
+	ex_dprintf("design %s (cellref %s (libraryref %s))\n",
 		designname, libname, cellname);
 	return(SUCCESS);
 }
 
-int ex_startview(viewname)
-char *viewname;
+int ex_startview(const char *viewname)
 {
 	view *vp;
-	dprintf("startview %s\n", viewname);
+	ex_dprintf("startview %s\n", viewname);
 	vp = (view *)hashfind(&curcell->viewhash, viewname);
 	if(!vp) {
 		vp = ZTNEW(view, 1);
-		vp->h.name = viewname;
+		vp->h.name = u_strsave(viewname);
 		hashinsert(&curcell->viewhash, vp);
 		hashinit(&vp->u.nl.porthash);
 		hashinit(&vp->u.nl.insthash);
@@ -128,11 +116,10 @@ char *viewname;
 	return(SUCCESS);
 }
 
-int ex_endview(plist)
-property *plist;
+int ex_endview(property *plist)
 {
 	property *p;
-	dprintf("endview %s\n", curview->h.name);
+	ex_dprintf("endview %s\n", curview->h.name);
 	while(plist) {
 		p = plist;
 		plist = p->next;
@@ -144,16 +131,13 @@ property *plist;
 	return(SUCCESS);
 }
 
-int ex_port(name, dir, plist)
-char *name;
-int dir;
-property *plist;
+int ex_port(const char *name, int dir, property *plist)
 {
 	conn *ptp;
 	instance *ip;
 	instance *ptpip;
 
-	dprintf("port %s %c\n", name, dir);
+	ex_dprintf("port %s %c\n", name, dir);
 	if(viewredef) {
 		if(hashfind(&curview->u.nl.porthash, name)) return(SUCCESS);
 		fprintf(stderr, "Mismatched port names in redef of %s:%s.%s\n",
@@ -161,7 +145,7 @@ property *plist;
 		return(FAIL);
 	}
 	ip = ZTNEW(instance, 1);
-	ip->h.name = name;
+	ip->h.name = u_strsave(name);
 	ip->proplist = plist;
 	switch(dir) {
 	case 'i':
@@ -190,9 +174,7 @@ property *plist;
 	return(SUCCESS);
 }
 
-int ex_instance(name, libname, cellname, viewname, plist)
-char *name, *libname, *cellname, *viewname;
-property *plist;
+int ex_instance(const char *name, const char *libname, const char *cellname, const char *viewname, property *plist)
 {
 	instance *ip, *pip;
 	view *vp;
@@ -200,7 +182,7 @@ property *plist;
 	conn *ptp, **tptp;
 	int hidx;
 
-	dprintf("instance %s of %s:%s.%s\n", name, libname, cellname, viewname);
+	ex_dprintf("instance %s of %s:%s.%s\n", name, libname, cellname, viewname);
 	if(hashfind(&curview->u.nl.insthash, name)) {
 		fprintf(stderr, "Duplicate instance name %s in view %s:%s.%s\n",
 			name, curlib->h.name, curcell->h.name, curview->h.name);
@@ -213,7 +195,7 @@ property *plist;
 		return(FAIL);
 	}
 	ip = ZTNEW(instance, 1);
-	ip->h.name = name;
+	ip->h.name = u_strsave(name);
 	ip->instof = vp;
 	ip->owner = curview;
 	ip->ports = NIL;
@@ -236,18 +218,17 @@ property *plist;
 	return(SUCCESS);
 }
 
-int ex_startnet(name)
-char *name;
+int ex_startnet(const char *name)
 {
 	net *np;
-	dprintf("net %s\n", name);
+	ex_dprintf("net %s\n", name);
 	if(hashfind(&curview->u.nl.nethash, name)) {
 		fprintf(stderr, "Duplicate net name %s in view %s:%s.%s\n",
 			name, curlib->h.name, curcell->h.name, curview->h.name);
 		return(FAIL);
 	}
 	np = ZTNEW(net, 1);
-	np->h.name = name;
+	np->h.name = u_strsave(name);
 	np->conns = NIL;
 	np->owner = curview;
 	hashinsert(&curview->u.nl.nethash, np);
@@ -255,24 +236,21 @@ char *name;
 	return(SUCCESS);
 }
 
-int ex_endnet(plist)
-property *plist;
+int ex_endnet(property *plist)
 {
-	dprintf("endnet %s\n", curnet->h.name);
+	ex_dprintf("endnet %s\n", curnet->h.name);
 	curnet->proplist = plist;
 	curnet = NIL;
 	return(SUCCESS);
 }
 
-int ex_join(pname, iname)
-char *pname;
-char *iname;
+int ex_join(const char *pname, const char *iname)
 {
 	instance *ip, *pip;
 	conn *ptp;
 
 	if(!curnet) return(SUCCESS);
-	dprintf(" join to %s.%s\n", iname ? iname : "$", pname);
+	ex_dprintf(" join to %s.%s\n", iname ? iname : "$", pname);
 	if(iname) {
 		ip = (instance *)hashfind(&curview->u.nl.insthash, iname);
 		if(!ip) {

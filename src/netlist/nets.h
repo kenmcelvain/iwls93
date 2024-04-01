@@ -133,4 +133,16 @@ extern void mergenets();
 extern int isprimitive();
 extern void deleteinstance();
 
+void netlist_init(void);
+void setprimtype(view *vp);
+void fixnc(view *vp);
+void flatten(view *vp, int (*testfunc)());
+void dissolve(instance *tip);
+int hashdelete_f(hashtable *ht, hashentry *nhe);
+void ep_clearnametab(void);
+
+void writeblif(FILE *fp, view *vp);
+void writeslif(FILE *fp, view *vp);
+void writeedif(FILE *fp, view *topvp);
+
 #endif
