@@ -6,14 +6,15 @@ static char copyright[] = "Copyright (C) 1993 Mentor Graphics Corporation";
 #include <stdio.h>
 #include <sys/param.h>
 #define DECL /**/
+#include "parse.h"
 #include "nets.h"
 #include "token.h"
 
 char dbg[256] = { 0 };
 
-static void report();
+static void report(view *vp);
 
-static void usage()
+static void usage(void )
 {
 	fprintf(stderr, "Usage: erprt [-flags] file.edif\n");
 	fprintf(stderr, "Flags:\n");
@@ -21,10 +22,7 @@ static void usage()
 	exit(1);
 }
 
-main(argc, argv)
-int argc;
-char *argv[];
-{
+int main(int argc, char **argv) {
 	FILE *fp, *tfp;
 	view *vp;
 	char *cp;
@@ -67,10 +65,7 @@ char *argv[];
 static float areatotal;
 static int numinsts;
 
-static property *findprop(name, plist)
-char *name;
-property *plist;
-{
+static property *findprop(const char *name, property *plist) {
 	property *p;
 
 	for(p = plist; p; p=p->next) {
@@ -79,9 +74,7 @@ property *plist;
 	return(p);
 }
 
-static void totalarea(vp)
-view *vp;
-{
+static void totalarea(view *vp) {
 	hashtable *iht;
 	int iidx;
 	instance *ip;
@@ -104,15 +97,11 @@ view *vp;
 static library *userlp;
 static float defaultcap, defaultmaxcap;
 
-static int stopflatten(vp)
-view *vp;
-{
+static int stopflatten(view *vp) {
 	return (vp->cellp->lp != userlp);
 }
 
-static float net_cap(np)
-net *np;
-{
+static float net_cap(net *np) {
 	conn *cnp;
 	float cap;
 	property *p;
@@ -135,9 +124,7 @@ net *np;
 	return(cap);
 }
 
-static float net_maxcap(np)
-net *np;
-{
+static float net_maxcap(net *np) {
 	conn *cnp;
 	float maxcap, mc;
 	property *p;
@@ -164,9 +151,7 @@ net *np;
 	return(maxcap);
 }
 
-static void capreport(vp)
-view *vp;
-{
+static void capreport(view *vp) {
 	hashtable *nht, *iht;
 	int nidx;
 	net *np;
@@ -227,10 +212,7 @@ view *vp;
 	}
 }
 
-double getportprop(vp, pinname, propname, dflt)
-view *vp;
-char *pinname, *propname;
-double dflt;
+double getportprop(view *vp, const char *pinname, const char *propname, double dflt)
 {
 	instance *pt;
 	property *p;
@@ -245,8 +227,7 @@ double dflt;
 	return(dflt);
 }
 
-static void getdefaultcapvalues()
-{
+static void getdefaultcapvalues(void) {
 	library *lp;
 	cell *cellp;
 	view *vp;
@@ -269,9 +250,7 @@ static void getdefaultcapvalues()
 	}
 }
 
-static void report(vp)
-view *vp;
-{
+static void report(view *vp) {
 
 	getdefaultcapvalues();
 
