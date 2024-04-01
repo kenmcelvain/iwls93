@@ -7,13 +7,15 @@ static char copyright[] = "Copyright (C) 1993 Mentor Graphics Corporation";
 #include <stdio.h>
 #define DECL /**/
 #define RCSHEADERS
+#include "util.h"
+#include "parse.h"
 #include "nets.h"
 #include "token.h"
 
 char dbg[256] = { 0 };
 extern int ex_verbose;
 
-static void usage()
+static void usage(void)
 {
 	fprintf(stderr, "Usage: e2fmt -[flags] <file1>.e <file2>.e ...\n");
 	fprintf(stderr, "Flags:   l  - load iwls93/bin/../lib/iwls93.e\n");
@@ -25,10 +27,7 @@ static void usage()
 	exit(1);
 }
 
-main(argc, argv)
-int argc;
-char *argv[];
-{
+int main(int argc, char **argv) {
 	FILE *fp, *ofp;
 	view *vp;
 	char *cp;
@@ -92,5 +91,6 @@ char *argv[];
 
 	fclose(ofp);
 	ep_clearnametab();
-	exit(0);
+	// exit(0);
+	return 0;
 }

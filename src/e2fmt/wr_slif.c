@@ -8,8 +8,7 @@ static char copyright[] = "Copyright (C) 1993 Mentor Graphics Corporation";
 
 int linepos = 0;
 
-fold(fp)
-FILE *fp;
+void fold(FILE *fp)
 {
 	if(ftell(fp) - linepos > 70) {
 		fputs("\\\n    ", fp);
@@ -17,9 +16,7 @@ FILE *fp;
 	}
 }
 
-char *pinnetname(ip, pname)
-instance *ip;
-char *pname;
+char *pinnetname(instance *ip, const char *pname)
 {
 	conn *ptp;
 	for(ptp = ip->ports; ptp; ptp=ptp->inext) {
@@ -30,11 +27,7 @@ char *pname;
 	return("UNKNOWN_PIN");
 }
 
-void printports(fp, ht, cmd, ptype)
-FILE *fp;
-hashtable *ht;
-char *cmd;
-int ptype;
+void printports(FILE *fp, hashtable *ht, const char *cmd, int ptype)
 {
 	int hidx, cnt;
 	instance *ip;
@@ -55,9 +48,7 @@ int ptype;
 	fputs(";\n", fp);
 }
 
-writeslif(fp, vp)
-FILE *fp;
-view *vp;
+void writeslif(FILE *fp, view *vp)
 {
 	netlist *nl;
 	int hidx,  i, j, xsize, t, first;

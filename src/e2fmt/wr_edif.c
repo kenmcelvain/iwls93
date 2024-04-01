@@ -25,9 +25,7 @@ typedef struct _liblist {
 
 static liblist *libs;
 
-static viewlist *findviewref(cc, vp)
-celllist *cc;
-view *vp;
+static viewlist *findviewref(celllist *cc, view *vp)
 {
 	viewlist *vv;
 
@@ -37,9 +35,7 @@ view *vp;
 	return(vv);
 }
 
-static celllist *findcellref(ll, vp)
-liblist *ll;
-view *vp;
+static celllist *findcellref(liblist *ll, view *vp)
 {
 	celllist *cc;
 
@@ -49,8 +45,7 @@ view *vp;
 	return(cc);
 }
 
-static liblist *findlibref(vp)
-view *vp;
+static liblist *findlibref(view *vp)
 {
 	liblist *ll;
 
@@ -60,8 +55,7 @@ view *vp;
 	return(ll);
 }
 
-static void collectviews(vp)
-view *vp;
+static void collectviews(view *vp)
 {
 	liblist *ll;
 	celllist *cc;
@@ -106,10 +100,7 @@ view *vp;
 	}
 }
 
-static void printproplist(fp, p, spaces)
-FILE *fp;
-property *p;
-char *spaces;
+static void printproplist(FILE *fp, property *p, const char *spaces)
 {
 	int i;
 	double f;
@@ -131,9 +122,7 @@ char *spaces;
 	}
 }
 
-writeedif(fp, topvp)
-FILE *fp;
-view *topvp;
+void writeedif(FILE *fp, view *topvp)
 {
 	liblist *ll;
 	library *lp;

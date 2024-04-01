@@ -8,10 +8,7 @@ static char copyright[] = "Copyright (C) 1993 Mentor Graphics Corporation";
 
 extern char *pinnetname();
 
-writeblif(fp, vp)
-FILE *fp;
-view *vp;
-{
+void writeblif(FILE *fp, view *vp) {
 	netlist *nl;
 	int hidx,  i, j, xsize, t;
 	int linepos;
