@@ -25,7 +25,8 @@ DECL char *ep_tname; DECL int ep_tnamelen; /* result of rename */
 DECL long ep_tint;	/* integer token value */
 DECL double ep_tdouble; /* double token value */
 DECL char *ep_tcharp;   /* generic pointer value */
-DECL int ep_tokenpushed; /* indicates that a token has been pushed back */
+
+extern int ep_tokenpushed; /* indicates that a token has been pushed back */
 
 DECL int ep_line;	/* line number in file */
 DECL int ep_ecnt;	/* number of errors in file */
@@ -64,5 +65,9 @@ extern ep_name *ep_getname();
 #define T_DIRECTION 16
 #define T_PROPERTY 17
 #define T_ERROR	18
+
+int ep_getarg(const char *keystr);
+int ep_getoptarg(const char *keystr);
+int ep_gettoken(void);
 
 #endif

@@ -6,10 +6,10 @@ static char rcsid[] = "$Header: token.c,v 1.3 93/02/22 12:02:09 kenm Exp $";
 static char copyright[] = "Copyright (C) 1993 Mentor Graphics Corporation";
 #endif
 
+#undef DECL
 #include <ctype.h>
 #include "util.h"
-#undef DECL
-#define DECL /**/
+#include "parse.h"
 #include "token.h"
 
 static int printtokens = FALSE;
@@ -18,26 +18,19 @@ int ep_pos = 0; /* position in ep_tbuf */
 int ep_tokenpushed = FALSE;
 int ep_shiftdir = -1;
 
-static ep_getc(fp)
-FILE *fp;
-{
+static int ep_getc(FILE *fp) {
 	int ch;
 	ch = getc(fp);
 	if(ch=='\n') ep_line++;
 	return(ch);
 }
 
-static void ep_ungetc(ch,fp)
-int ch;
-FILE *fp;
-{
+static void ep_ungetc(int ch, FILE *fp) {
 	if(ch=='\n') ep_line--;
 	ungetc(ch,fp);
 }
 
-static void ep_addc(ch)
-int ch;
-{
+static void ep_addc(int ch) {
 	if(ep_pos >= ep_tlen) {
 		ep_tlen = ep_pos + 128;
 		ep_tbuf = u_realloc(ep_tbuf,ep_tlen);
@@ -45,17 +38,14 @@ int ch;
 	ep_tbuf[ep_pos++] = ch;
 }
 
-static void ep_sizesbuf(len)
-{
+static void ep_sizesbuf(int len) {
 	if(len >= ep_tlen) {
 		ep_tlen = len + 128;
 		ep_tbuf = u_realloc(ep_tbuf,ep_tlen);
 	}
 }
 
-static void ep_printtoken(fp)
-FILE *fp;
-{
+static void ep_printtoken(FILE *fp) {
 	fprintf(fp, "*Token - ");
 	switch(ep_tkind) {
 	case T_ERROR: fprintf(fp,"Error\n"); break;
@@ -82,8 +72,7 @@ FILE *fp;
  * Get one token
  * Token information is stored in globals
  */
-ep_gettoken()
-{
+int ep_gettoken(void) {
 	FILE *fp;
 	int i,ch;
 	int sign;

@@ -3,13 +3,12 @@ static char rcsid[] = "$Header: builtin.c,v 1.3 93/02/22 12:01:20 kenm Exp $";
 static char copyright[] = "Copyright (C) 1993 Mentor Graphics Corporation";
 #endif
 
+#undef DECL
 #include "util.h"
 #include "token.h"
 #include "parse.h"
 
-int epk_eat(keystr)
-char *keystr;
-{
+int epk_eat(const char *keystr) {
 	while(1) {
 		ep_getoptarg(keystr);
 		if(ep_tkind == T_EOF || ep_tkind == T_END) break;
@@ -29,13 +28,13 @@ char *keystr;
  * this is used in error recovery, and in ignoring keywords
  * we don't care about.
  */
-int epk_ignore()
-{
+int epk_ignore(void) {
 	int count;
 
 	count = 1;
 	do {
-		ep_gettoken(e_fp);
+		// ep_gettoken(e_fp);
+		ep_gettoken();
 		if(ep_tkind == T_LPAR) count++;
 		else if(ep_tkind == T_RPAR) count--;
 	} while(count && ep_tkind!=EOF);
@@ -44,9 +43,7 @@ int epk_ignore()
 	return(SUCCESS);
 }
 
-int epk_edifversion(a,b,c)
-int a,b,c;
-{
+int epk_edifversion(int a, int b, int c) {
 	ep_edifversion[0] = a;
 	ep_edifversion[1] = b;
 	ep_edifversion[2] = c;
@@ -54,35 +51,26 @@ int a,b,c;
 	return(SUCCESS);
 }
 
-int epk_ediflevel(level)
-int level;
-{
+int epk_ediflevel(int level) {
 	ep_ediflevel = level;
 	ep_tkind = T_NULL;
 	return(SUCCESS);
 }
 
-int epk_timestamp(year,month,day,hour,minute,second)
-int year,month,day,hour,minute,second;
-{
+int epk_timestamp(int year, int month, int day, int hour, int minute, int second) {
 	ep_tkind = T_NULL;
 	printf("timestamp year %d, month %d, day %d, hour %d, minute %d, sec %d\n", year,month,day,hour,minute,second);
 	return(SUCCESS);
 }
 
-int epk_rename(name, rename)
-ep_name *name;
-char *rename;
-{
+int epk_rename(ep_name *name, char *rename) {
 	u_free(rename);
 	ep_tkind = T_NAME;
 	ep_tname = name;
 	return(SUCCESS);
 }
 
-int epk_property(n)
-ep_name *n;
-{
+int epk_property(ep_name *n) {
 	property *p;
 	static char prop[] = "property";
 	ep_setctx("property/");
@@ -105,9 +93,7 @@ ep_name *n;
 }
 
 /* read a number */
-int epk_e(i1, i2)
-int i1, i2;
-{
+int epk_e(int i1, int i2) {
 	static double d;
 
 	d = i1;
@@ -128,8 +114,8 @@ int i1, i2;
 	return(SUCCESS);
 }
 
-int epk_string(str)
-char *str;
+// FIXME:  str not used???
+int epk_string(const char *str)
 {
 	property *p;
 	p = TNEW(property, 1);
@@ -140,9 +126,7 @@ char *str;
 	return(SUCCESS);
 }
 
-int epk_integer(i)
-int i;
-{
+int epk_integer(int i) {
 	property *p;
 	p = TNEW(property, 1);
 	p->kind = 'i';
@@ -152,9 +136,7 @@ int i;
 	return(SUCCESS);
 }
 
-int epk_number(dp)
-double *dp;
-{
+int epk_number(double *dp) {
 	property *p;
 	p = TNEW(property, 1);
 	p->kind = 'f';
@@ -168,10 +150,7 @@ static int inlib = FALSE;
 static int incell = FALSE;
 static int inview = FALSE;
 
-int epk_library(keystr, libname)
-char *keystr;
-ep_name *libname;
-{
+int epk_library(const char *keystr, ep_name *libname) {
 	property *plist = NIL;
 
 	libname->flags |= N_LIBNAME;
@@ -195,9 +174,7 @@ ep_name *libname;
 	return(ex_endlibrary(plist));
 }
 
-int epk_cell(cellname)
-ep_name *cellname;
-{
+int epk_cell(ep_name *cellname) {
 	property *plist = NIL;
 
 	if(!inlib) return(ep_perr_ignore("cell: not inside a library!"));
@@ -225,9 +202,7 @@ ep_name *cellname;
 	return(ex_endcell(plist));
 }
 
-epk_view(viewname)
-ep_name *viewname;
-{
+int epk_view(ep_name *viewname) {
 	property *plist = NIL;
 	if(!incell) return (ep_perr_ignore("view: not inside a cell!"));
 	if(inview) return (ep_perr_ignore("view: can't be nested"));
@@ -254,9 +229,7 @@ ep_name *viewname;
 	return(ex_endview(plist));
 }
 
-int epk_libraryref(libname)
-ep_name *libname;
-{
+int epk_libraryref(ep_name *libname) {
 	if(!(libname->flags & N_LIBNAME)) {
 		ep_perr("libraryref: Unknown library name '%s'", libname->str);
 		return(FAIL);
@@ -266,10 +239,7 @@ ep_name *libname;
 	return(SUCCESS);
 }
 
-int epk_cellref(cellname, libref)
-ep_name *cellname;
-ep_reference *libref;
-{
+int epk_cellref(ep_name *cellname, ep_reference *libref) {
 	if(!(cellname->flags & N_CELLNAME)) {
 		ep_perr("cellref: Unknown cell name '%s'", cellname->str);
 		return(FAIL);
@@ -280,10 +250,7 @@ ep_reference *libref;
 	return(SUCCESS);
 }
 
-int epk_viewref(viewname, cellref)
-ep_name *viewname;
-ep_reference *cellref;
-{
+int epk_viewref(ep_name *viewname, ep_reference *cellref) {
 	if(!(viewname->flags & N_VIEWNAME)) {
 		ep_perr("viewref: Unknown view name '%s'", viewname->str);
 		return(FAIL);
@@ -295,17 +262,12 @@ ep_reference *cellref;
 	return(SUCCESS);
 }
 
-int epk_design(designname, cellref)
-ep_name *designname;
-ep_reference *cellref;
-{
+int epk_design(ep_name *designname, ep_reference *cellref) {
 	ep_tkind = T_NULL;
 	return(ex_design(designname->str, cellref->library, cellref->cell));
 }
 
-property *ep_getproplist(keystr)
-char *keystr;
-{
+property *ep_getproplist(const char *keystr) {
 	property *plist = NIL;
 	while(1) {
 		ep_getoptarg(keystr);
@@ -319,19 +281,14 @@ char *keystr;
 	return(plist);
 }
 
-int epk_port(name, dir)
-ep_name *name;
-int dir;
-{
+int epk_port(ep_name *name, int dir) {
 	property *plist;
 	plist = ep_getproplist("port");
 	ep_tkind = T_NULL;
 	return(ex_port(name->str, dir, plist));
 }
 
-int epk_direction(dir)
-ep_name *dir;
-{
+int epk_direction(ep_name *dir) {
 	int dirc;
 	char *s;
 	s = dir->str;
@@ -347,10 +304,7 @@ ep_name *dir;
 	return(SUCCESS);
 }
 
-int epk_instance(name, vref)
-ep_name *name;
-ep_reference *vref;
-{
+int epk_instance(ep_name *name, ep_reference *vref) {
 	property *plist;
 	plist = ep_getproplist("port");
 	ex_instance(name->str, vref->library, vref->cell, vref->view, plist);
@@ -358,9 +312,7 @@ ep_reference *vref;
 	return(SUCCESS);
 }
 
-int epk_net(name)
-ep_name *name;
-{
+int epk_net(ep_name *name) {
 	property *plist;
 	ex_startnet(name->str);
 	if(FAIL == ep_getarg("net")) return(FAIL);
@@ -370,8 +322,7 @@ ep_name *name;
 	return(SUCCESS);
 }
 
-int epk_joined()
-{
+int epk_joined(void) {
 	ep_setctx("joined/");
 	while(1) {
 		ep_getoptarg("joined");
@@ -382,9 +333,7 @@ int epk_joined()
 	return(SUCCESS);
 }
 
-int epk_joined_portref(pname)
-ep_name *pname;
-{
+int epk_joined_portref(ep_name *pname) {
 	char *iname;
 	if(FAIL == ep_getoptarg("joined/portref")) return(FAIL);
 	if(ep_tkind == T_NAME) {
@@ -400,16 +349,13 @@ ep_name *pname;
 	return(ex_join(pname->str, iname));
 }
 
-int epk_instanceref(iname)
-ep_name *iname;
-{
+int epk_instanceref(ep_name *iname) {
 	ep_tkind = T_NAME;
 	ep_tname = iname;
 	return(SUCCESS);
 }
 
-epk_init()
-{
+void epk_init(void) {
 	static int beenhere = FALSE;
 
 	if(beenhere) return;

@@ -3,14 +3,13 @@ static char rcsid[] = "$Header: parse.c,v 1.4 93/02/22 12:01:26 kenm Exp $";
 static char copyright[] = "Copyright (C) 1993 Mentor Graphics Corporation";
 #endif
 
-#include <varargs.h>
+#undef DECL
 #include "util.h"
 #include "token.h"
-#undef DECL
-#define DECL /**/
 #include "parse.h"
 
-extern int epk_ignore();
+extern int epk_ignore(void);
+int ep_parse(void);
 
 typedef struct _ep_ctx {
 	char *pre;
@@ -27,15 +26,13 @@ static ep_keyword *ep_keytab[HSIZE] = { 0 };
 #define NSIZE 1024
 static ep_name *ep_nametab[NSIZE] = { 0 };
 
-void ep_perr(va_alist)
-va_dcl
+
+void ep_perr(const char *fmt, ...)
 {
 	va_list args;
-	char *fmt;
 
-	va_start(args);
+	va_start(args, fmt);
 	fprintf(stderr, "Parsing Error, line %d: ", ep_line);
-	fmt = va_arg(args, char *);
 	vfprintf(stderr, fmt, args);
 	va_end(args);
 	fputc('\n', stderr);
@@ -44,15 +41,12 @@ va_dcl
 	return;
 }
 
-int ep_perr_ignore(va_alist)
-va_dcl
+int ep_perr_ignore(const char *fmt, ...)
 {
 	va_list args;
-	char *fmt;
 
-	va_start(args);
+	va_start(args, fmt);
 	fprintf(stderr, "Parsing Error, line %d: ", ep_line);
-	fmt = va_arg(args, char *);
 	vfprintf(stderr, fmt, args);
 	va_end(args);
 	fputc('\n', stderr);
@@ -61,12 +55,11 @@ va_dcl
 	return(epk_ignore());
 }
 
-/*
- * Edif keywords will be prefixed by a context string so that
- * keywords can have different actions in different contexts.
- */
-void ep_setctx(pre)
-char *pre;
+//
+// Edif keywords will be prefixed by a context string so that
+// keywords can have different actions in different contexts.
+//
+void ep_setctx(const char *pre)
 {
 	ep_ctx *ctx;
 	ctx = TNEW(ep_ctx, 1);
@@ -79,8 +72,7 @@ char *pre;
 	keybuf = keybuf_b + strlen(keybuf_b);
 }
 
-void ep_pushctx(pre)
-char *pre;
+void ep_pushctx(const char *pre)
 {
 	ep_ctx *ctx;
 
@@ -93,7 +85,7 @@ char *pre;
 	keybuf += strlen(keybuf);
 }
 
-void ep_popctx()
+void ep_popctx(void)
 {
 	ep_ctx *ctx;
 
@@ -109,9 +101,7 @@ void ep_popctx()
 /*
  * hash table routines for keyword lookup
  */
-static int hash(str, tsize)
-register char *str;
-int tsize;
+int myhash(const char *str, int tsize)
 {
 	register unsigned int sum, sum2;
 
@@ -126,27 +116,25 @@ int tsize;
 	return(sum);
 }
 
-ep_keyword *ep_insertkey(name)
-char *name;
+ep_keyword *ep_insertkey(const char *name)
 {
 	int h;
 	ep_keyword *k;
 	k = ZTNEW(ep_keyword, 1);
 	k->name = u_strsave(name);
-	h = hash(name, HSIZE);
+	h = myhash(name, HSIZE);
 	k->hashnext = ep_keytab[h];
 	ep_keytab[h] = k;
 	return(k);
 }
 
-ep_keyword *ep_findkey(name)
-char *name;
+ep_keyword *ep_findkey(const char *name)
 {
 	ep_keyword *k;
 	int h;
 
 	strcpy(keybuf, name);
-	h = hash(keybuf_b, HSIZE);
+	h = myhash(keybuf_b, HSIZE);
 	for(k = ep_keytab[h]; k; k=k->hashnext) {
 		if(!strcmp(k->name, keybuf_b)) {
 			while(k->alias) k = k->alias;
@@ -156,8 +144,7 @@ char *name;
 	return(NIL);
 }
 
-ep_keyword *ep_ignorekey(name)
-char *name;
+ep_keyword *ep_ignorekey(const char *name)
 {
 	ep_keyword *k;
 	k = ep_insertkey(name);
@@ -168,10 +155,10 @@ char *name;
 	return(k);
 }
 
-ep_keyword *ep_addkey(name, args, f)
-char *name;
-char *args;
-int (*f)();
+ep_keyword *ep_addkey(const char *name, char *args, int (*f)())
+//char *name;
+//char *args;
+//int (*f)();
 {
 	ep_keyword *k;
 	k = ep_insertkey(name);
@@ -182,7 +169,7 @@ int (*f)();
 	return(k);
 }
 
-void ep_clearnametab()
+void ep_clearnametab(void)
 {
 	int h;
 	ep_name *n, *nn;
@@ -198,13 +185,12 @@ void ep_clearnametab()
 	}
 }
 
-ep_name *ep_getname(str)
-char *str;
+ep_name *ep_getname(const char *str)
 {
 	int h, len;
 	ep_name *n;
 
-	h = hash(str, NSIZE);
+	h = myhash(str, NSIZE);
 	for(n = ep_nametab[h]; n; n=n->hashnext) {
 		if(!strcmp(n->str, str)) return(n);
 	}
@@ -217,8 +203,7 @@ char *str;
 	return(n);
 }
 
-int ep_getarg(keystr)
-char *keystr;
+int ep_getarg(const char *keystr)
 {
 	ep_gettoken();
 	switch(ep_tkind) {
@@ -234,8 +219,7 @@ char *keystr;
 }
 
 
-int ep_getoptarg(keystr)
-char *keystr;
+int ep_getoptarg(const char *keystr)
 {
 	ep_gettoken();
 	switch(ep_tkind) {
@@ -249,8 +233,7 @@ char *keystr;
 	}
 }
 
-int ep_getnamearg(keystr)
-char *keystr;
+int ep_getnamearg(const char *keystr)
 {
 	ep_gettoken();
 	if(ep_tkind == T_LPAR) ep_parse();
@@ -268,8 +251,7 @@ char *keystr;
 
 #define EP_MAXARGS 10
 
-ep_parse()
-{
+int ep_parse(void) {
 	long a[EP_MAXARGS]; /* argument collection array */
 	int argpos, ap1, count;
 	char *ad, *keystr, *cp;
@@ -422,8 +404,7 @@ ep_parse()
 	return(status);
 }
 
-ep_init()
-{
+void ep_init(void) {
 	ep_line = 1;
 	ep_ecnt = 0;
 	ep_ediflevel = 0;
@@ -436,13 +417,11 @@ ep_init()
 	ep_tlref.view = ep_tcref.view = ep_tvref.view = NIL;
 }
 
-void ep_startparse(fp)
-FILE *fp;
-{
+void ep_startparse(FILE *fp) {
 
 	ep_init();
 	ep_tokenpushed = FALSE;
 	e_fp = fp;
-	ep_gettoken(fp);
+	ep_gettoken();
 	ep_parse();
 }
