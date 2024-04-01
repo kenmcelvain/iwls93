@@ -1,0 +1,1440 @@
+%!
+%%BoundingBox: (atend)
+%%Pages: (atend)
+%%DocumentFonts: (atend)
+%%EndComments
+%
+% FrameMaker PostScript Prolog 3.0, for use with FrameMaker 3.0
+% Copyright (c) 1986,87,89,90,91 by Frame Technology Corporation.
+% All rights reserved.
+%
+% Known Problems:
+%	Due to bugs in Transcript, the 'PS-Adobe-' is omitted from line 1
+/FMversion (3.0) def 
+% Set up Color vs. Black-and-White
+	/FMPrintInColor systemdict /colorimage known
+		systemdict /currentcolortransfer known or def
+% Uncomment this line to force b&w on color printer
+%   /FMPrintInColor false def
+/FrameDict 195 dict def 
+systemdict /errordict known not {/errordict 10 dict def
+		errordict /rangecheck {stop} put} if
+% The readline in 23.0 doesn't recognize cr's as nl's on AppleTalk
+FrameDict /tmprangecheck errordict /rangecheck get put 
+errordict /rangecheck {FrameDict /bug true put} put 
+FrameDict /bug false put 
+mark 
+% Some PS machines read past the CR, so keep the following 3 lines together!
+currentfile 5 string readline
+00
+0000000000
+cleartomark 
+errordict /rangecheck FrameDict /tmprangecheck get put 
+FrameDict /bug get { 
+	/readline {
+		/gstring exch def
+		/gfile exch def
+		/gindex 0 def
+		{
+			gfile read pop 
+			dup 10 eq {exit} if 
+			dup 13 eq {exit} if 
+			gstring exch gindex exch put 
+			/gindex gindex 1 add def 
+		} loop
+		pop 
+		gstring 0 gindex getinterval true 
+		} def
+	} if
+/FMVERSION {
+	FMversion ne {
+		/Times-Roman findfont 18 scalefont setfont
+		100 100 moveto
+		(FrameMaker version does not match postscript_prolog!)
+		dup =
+		show showpage
+		} if
+	} def 
+/FMLOCAL {
+	FrameDict begin
+	0 def 
+	end 
+	} def 
+	/gstring FMLOCAL
+	/gfile FMLOCAL
+	/gindex FMLOCAL
+	/orgxfer FMLOCAL
+	/orgproc FMLOCAL
+	/organgle FMLOCAL
+	/orgfreq FMLOCAL
+	/yscale FMLOCAL
+	/xscale FMLOCAL
+	/manualfeed FMLOCAL
+	/paperheight FMLOCAL
+	/paperwidth FMLOCAL
+/FMDOCUMENT { 
+	array /FMfonts exch def 
+	/#copies exch def
+	FrameDict begin
+	0 ne dup {setmanualfeed} if
+	/manualfeed exch def
+	/paperheight exch def
+	/paperwidth exch def
+	/yscale exch def
+	/xscale exch def
+	currenttransfer cvlit /orgxfer exch def
+	currentscreen cvlit /orgproc exch def
+	/organgle exch def /orgfreq exch def
+	setpapername 
+	manualfeed {true} {papersize} ifelse 
+	{manualpapersize} {false} ifelse 
+	{desperatepapersize} if
+	end 
+	} def 
+	/pagesave FMLOCAL
+	/orgmatrix FMLOCAL
+	/landscape FMLOCAL
+/FMBEGINPAGE { 
+	FrameDict begin 
+	/pagesave save def
+	3.86 setmiterlimit
+	/landscape exch 0 ne def
+	landscape { 
+		90 rotate 0 exch neg translate pop 
+		}
+		{pop pop}
+		ifelse
+	xscale yscale scale
+	/orgmatrix matrix def
+	gsave 
+	} def 
+/FMENDPAGE {
+	grestore 
+	pagesave restore
+	end 
+	showpage
+	} def 
+/FMFONTDEFINE { 
+	FrameDict begin
+	findfont 
+	ReEncode 
+	1 index exch 
+	definefont 
+	FMfonts 3 1 roll 
+	put
+	end 
+	} def 
+/FMFILLS {
+	FrameDict begin
+	array /fillvals exch def
+	end 
+	} def 
+/FMFILL {
+	FrameDict begin
+	 fillvals 3 1 roll put
+	end 
+	} def 
+/FMNORMALIZEGRAPHICS { 
+	newpath
+	0.0 0.0 moveto
+	1 setlinewidth
+	0 setlinecap
+	0 0 0 sethsbcolor
+	0 setgray 
+	} bind def
+	/fx FMLOCAL
+	/fy FMLOCAL
+	/fh FMLOCAL
+	/fw FMLOCAL
+	/llx FMLOCAL
+	/lly FMLOCAL
+	/urx FMLOCAL
+	/ury FMLOCAL
+/FMBEGINEPSF { 
+	end 
+	/FMEPSF save def 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	[/fy /fx /fh /fw /ury /urx /lly /llx] {exch def} forall 
+	fx fy translate 
+	rotate
+	fw urx llx sub div fh ury lly sub div scale 
+	llx neg lly neg translate 
+	} bind def
+/FMENDEPSF {
+	FMEPSF restore
+	FrameDict begin 
+	} bind def
+FrameDict begin 
+/setmanualfeed {
+%%BeginFeature *ManualFeed True
+	 statusdict /manualfeed true put
+%%EndFeature
+	} def
+/max {2 copy lt {exch} if pop} bind def
+/min {2 copy gt {exch} if pop} bind def
+/inch {72 mul} def
+/pagedimen { 
+	paperheight sub abs 16 lt exch 
+	paperwidth sub abs 16 lt and
+	{/papername exch def} {pop} ifelse
+	} def
+	/papersizedict FMLOCAL
+/setpapername { 
+	/papersizedict 14 dict def 
+	papersizedict begin
+	/papername /unknown def 
+		/Letter 8.5 inch 11.0 inch pagedimen
+		/LetterSmall 7.68 inch 10.16 inch pagedimen
+		/Tabloid 11.0 inch 17.0 inch pagedimen
+		/Ledger 17.0 inch 11.0 inch pagedimen
+		/Legal 8.5 inch 14.0 inch pagedimen
+		/Statement 5.5 inch 8.5 inch pagedimen
+		/Executive 7.5 inch 10.0 inch pagedimen
+		/A3 11.69 inch 16.5 inch pagedimen
+		/A4 8.26 inch 11.69 inch pagedimen
+		/A4Small 7.47 inch 10.85 inch pagedimen
+		/B4 10.125 inch 14.33 inch pagedimen
+		/B5 7.16 inch 10.125 inch pagedimen
+	end
+	} def
+/papersize {
+	papersizedict begin
+		/Letter {lettertray letter} def
+		/LetterSmall {lettertray lettersmall} def
+		/Tabloid {11x17tray 11x17} def
+		/Ledger {ledgertray ledger} def
+		/Legal {legaltray legal} def
+		/Statement {statementtray statement} def
+		/Executive {executivetray executive} def
+		/A3 {a3tray a3} def
+		/A4 {a4tray a4} def
+		/A4Small {a4tray a4small} def
+		/B4 {b4tray b4} def
+		/B5 {b5tray b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	/FMdicttop countdictstack 1 add def 
+	statusdict begin stopped end 
+	countdictstack -1 FMdicttop {pop end} for 
+	} def
+/manualpapersize {
+	papersizedict begin
+		/Letter {letter} def
+		/LetterSmall {lettersmall} def
+		/Tabloid {11x17} def
+		/Ledger {ledger} def
+		/Legal {legal} def
+		/Statement {statement} def
+		/Executive {executive} def
+		/A3 {a3} def
+		/A4 {a4} def
+		/A4Small {a4small} def
+		/B4 {b4} def
+		/B5 {b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	stopped 
+	} def
+/desperatepapersize {
+	statusdict /setpageparams known
+		{
+		paperwidth paperheight 0 1 
+		statusdict begin
+		{setpageparams} stopped pop 
+		end
+		} if
+	} def
+/savematrix {
+	orgmatrix currentmatrix pop
+	} bind def
+/restorematrix {
+	orgmatrix setmatrix
+	} bind def
+/dmatrix matrix def
+/dpi    72 0 dmatrix defaultmatrix dtransform
+    dup mul exch   dup mul add   sqrt def
+/freq dpi 18.75 div 8 div round dup 0 eq {pop 1} if 8 mul dpi exch div def
+/sangle 1 0 dmatrix defaultmatrix dtransform exch atan def
+/DiacriticEncoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /space /exclam /quotedbl
+/numbersign /dollar /percent /ampersand /quotesingle /parenleft
+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
+/two /three /four /five /six /seven /eight /nine /colon /semicolon
+/less /equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K
+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /backslash
+/bracketright /asciicircum /underscore /grave /a /b /c /d /e /f /g /h
+/i /j /k /l /m /n /o /p /q /r /s /t /u /v /w /x /y /z /braceleft /bar
+/braceright /asciitilde /.notdef /Adieresis /Aring /Ccedilla /Eacute
+/Ntilde /Odieresis /Udieresis /aacute /agrave /acircumflex /adieresis
+/atilde /aring /ccedilla /eacute /egrave /ecircumflex /edieresis
+/iacute /igrave /icircumflex /idieresis /ntilde /oacute /ograve
+/ocircumflex /odieresis /otilde /uacute /ugrave /ucircumflex
+/udieresis /dagger /.notdef /cent /sterling /section /bullet
+/paragraph /germandbls /registered /copyright /trademark /acute
+/dieresis /.notdef /AE /Oslash /.notdef /.notdef /.notdef /.notdef
+/yen /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/ordfeminine /ordmasculine /.notdef /ae /oslash /questiondown
+/exclamdown /logicalnot /.notdef /florin /.notdef /.notdef
+/guillemotleft /guillemotright /ellipsis /.notdef /Agrave /Atilde
+/Otilde /OE /oe /endash /emdash /quotedblleft /quotedblright
+/quoteleft /quoteright /.notdef /.notdef /ydieresis /Ydieresis
+/fraction /currency /guilsinglleft /guilsinglright /fi /fl /daggerdbl
+/periodcentered /quotesinglbase /quotedblbase /perthousand
+/Acircumflex /Ecircumflex /Aacute /Edieresis /Egrave /Iacute
+/Icircumflex /Idieresis /Igrave /Oacute /Ocircumflex /.notdef /Ograve
+/Uacute /Ucircumflex /Ugrave /dotlessi /circumflex /tilde /macron
+/breve /dotaccent /ring /cedilla /hungarumlaut /ogonek /caron
+] def
+/ReEncode { 
+	dup 
+	length 
+	dict begin 
+	{
+	1 index /FID ne 
+		{def} 
+		{pop pop} ifelse 
+	} forall 
+	0 eq {/Encoding DiacriticEncoding def} if 
+	currentdict 
+	end 
+	} bind def
+/graymode true def
+	/bwidth FMLOCAL
+	/bpside FMLOCAL
+	/bstring FMLOCAL
+	/onbits FMLOCAL
+	/offbits FMLOCAL
+	/xindex FMLOCAL
+	/yindex FMLOCAL
+	/x FMLOCAL
+	/y FMLOCAL
+/setpattern {
+	 /bwidth  exch def
+	 /bpside  exch def
+	 /bstring exch def
+	 /onbits 0 def  /offbits 0 def
+	 freq sangle landscape {90 add} if 
+		{/y exch def
+		 /x exch def
+		 /xindex x 1 add 2 div bpside mul cvi def
+		 /yindex y 1 add 2 div bpside mul cvi def
+		 bstring yindex bwidth mul xindex 8 idiv add get
+		 1 7 xindex 8 mod sub bitshift and 0 ne
+		 {/onbits  onbits  1 add def 1}
+		 {/offbits offbits 1 add def 0}
+		 ifelse
+		}
+		setscreen
+	 {} settransfer
+	 offbits offbits onbits add div FMsetgray
+	/graymode false def
+	} bind def
+/grayness {
+	FMsetgray
+	graymode not {
+		/graymode true def
+		orgxfer cvx settransfer
+		orgfreq organgle orgproc cvx setscreen
+		} if
+	} bind def
+	/HUE FMLOCAL
+	/SAT FMLOCAL
+	/BRIGHT FMLOCAL
+	/Colors FMLOCAL
+FMPrintInColor 
+	
+	{
+	/HUE 0 def
+	/SAT 0 def
+	/BRIGHT 0 def
+	% array of arrays Hue and Sat values for the separations [HUE BRIGHT]
+	/Colors   
+	[[0    0  ]    % black
+	 [0    0  ]    % white
+	 [0.00 1.0]    % red
+	 [0.37 1.0]    % green
+	 [0.60 1.0]    % blue
+	 [0.50 1.0]    % cyan
+	 [0.83 1.0]    % magenta
+	 [0.16 1.0]    % comment / yellow
+	 ] def
+      
+	/BEGINBITMAPCOLOR { 
+		BITMAPCOLOR} def
+	/BEGINBITMAPCOLORc { 
+		BITMAPCOLORc} def
+	/BEGINBITMAPTRUECOLOR { 
+		BITMAPTRUECOLOR } def
+	/BEGINBITMAPTRUECOLORc { 
+		BITMAPTRUECOLORc } def
+	/K { 
+		Colors exch get dup
+		0 get /HUE exch store 
+		1 get /BRIGHT exch store
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray}
+			{HUE SAT BRIGHT sethsbcolor} 
+		  ifelse
+		} def
+	/FMsetgray { 
+		/SAT exch 1.0 exch sub store 
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray}
+			{HUE SAT BRIGHT sethsbcolor} 
+		  ifelse
+		} bind def
+	}
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPGRAY} def
+	/BEGINBITMAPCOLORc { 
+		BITMAPGRAYc} def
+	/BEGINBITMAPTRUECOLOR { 
+		BITMAPTRUEGRAY } def
+	/BEGINBITMAPTRUECOLORc { 
+		BITMAPTRUEGRAYc } def
+	/FMsetgray {setgray} bind def
+	/K { 
+		pop
+		} def
+	}
+ifelse
+/normalize {
+	transform round exch round exch itransform
+	} bind def
+/dnormalize {
+	dtransform round exch round exch idtransform
+	} bind def
+/lnormalize { 
+	0 dtransform exch cvi 2 idiv 2 mul 1 add exch idtransform pop
+	} bind def
+/H { 
+	lnormalize setlinewidth
+	} bind def
+/Z {
+	setlinecap
+	} bind def
+	/fillvals FMLOCAL
+/X { 
+	fillvals exch get
+	dup type /stringtype eq
+	{8 1 setpattern} 
+	{grayness}
+	ifelse
+	} bind def
+/V { 
+	gsave eofill grestore
+	} bind def
+/N { 
+	stroke
+	} bind def
+/M {newpath moveto} bind def
+/E {lineto} bind def
+/D {curveto} bind def
+/O {closepath} bind def
+	/n FMLOCAL
+/L { 
+ 	/n exch def
+	newpath
+	normalize
+	moveto 
+	2 1 n {pop normalize lineto} for
+	} bind def
+/Y { 
+	L 
+	closepath
+	} bind def
+	/x1 FMLOCAL
+	/x2 FMLOCAL
+	/y1 FMLOCAL
+	/y2 FMLOCAL
+	/rad FMLOCAL
+/R { 
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	x1 y1
+	x2 y1
+	x2 y2
+	x1 y2
+	4 Y 
+	} bind def
+/RR { 
+	/rad exch def
+	normalize
+	/y2 exch def
+	/x2 exch def
+	normalize
+	/y1 exch def
+	/x1 exch def
+	newpath
+	x1 y1 rad add moveto
+	x1 y2 x2 y2 rad arcto
+	x2 y2 x2 y1 rad arcto
+	x2 y1 x1 y1 rad arcto
+	x1 y1 x1 y2 rad arcto
+	closepath
+	16 {pop} repeat
+	} bind def
+/C { 
+	grestore
+	gsave
+	R 
+	clip
+	} bind def
+	/FMpointsize FMLOCAL
+/F { 
+	FMfonts exch get
+	FMpointsize scalefont
+	setfont
+	} bind def
+/Q { 
+	/FMpointsize exch def
+	F 
+	} bind def
+/T { 
+	moveto show
+	} bind def
+/RF { 
+	rotate
+	0 ne {-1 1 scale} if
+	} bind def
+/TF { 
+	gsave
+	moveto 
+	RF
+	show
+	grestore
+	} bind def
+/P { 
+	moveto
+	0 32 3 2 roll widthshow
+	} bind def
+/PF { 
+	gsave
+	moveto 
+	RF
+	0 32 3 2 roll widthshow
+	grestore
+	} bind def
+/S { 
+	moveto
+	0 exch ashow
+	} bind def
+/SF { 
+	gsave
+	moveto
+	RF
+	0 exch ashow
+	grestore
+	} bind def
+/B { 
+	moveto
+	0 32 4 2 roll 0 exch awidthshow
+	} bind def
+/BF { 
+	gsave
+	moveto
+	RF
+	0 32 4 2 roll 0 exch awidthshow
+	grestore
+	} bind def
+/G { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath fill
+	grestore
+	} bind def
+/A { 
+	gsave
+	savematrix
+	newpath
+	2 index 2 div add exch 3 index 2 div sub exch 
+	normalize 2 index 2 div sub exch 3 index 2 div add exch 
+	translate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	stroke
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/w FMLOCAL
+	/h FMLOCAL
+	/xx FMLOCAL
+	/yy FMLOCAL
+	/ww FMLOCAL
+	/hh FMLOCAL
+	/FMsaveobject FMLOCAL
+	/FMoptop FMLOCAL
+	/FMdicttop FMLOCAL
+/BEGINPRINTCODE { 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count 4 sub def 
+	/FMsaveobject save def
+	userdict begin 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	3 index neg 3 index neg translate
+	} bind def
+/ENDPRINTCODE {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMsaveobject restore 
+	} bind def
+/gn { 
+	0 
+	{	46 mul 
+		cf read pop 
+		32 sub 
+		dup 46 lt {exit} if 
+		46 sub add 
+		} loop
+	add 
+	} bind def
+	/str FMLOCAL
+/cfs { 
+	/str sl string def 
+	0 1 sl 1 sub {str exch val put} for 
+	str def 
+	} bind def
+/ic [ 
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0
+	{0 hx} {1 hx} {2 hx} {3 hx} {4 hx} {5 hx} {6 hx} {7 hx} {8 hx} {9 hx}
+	{10 hx} {11 hx} {12 hx} {13 hx} {14 hx} {15 hx} {16 hx} {17 hx} {18 hx}
+	{19 hx} {gn hx} {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12}
+	{13} {14} {15} {16} {17} {18} {19} {gn} {0 wh} {1 wh} {2 wh} {3 wh}
+	{4 wh} {5 wh} {6 wh} {7 wh} {8 wh} {9 wh} {10 wh} {11 wh} {12 wh}
+	{13 wh} {14 wh} {gn wh} {0 bl} {1 bl} {2 bl} {3 bl} {4 bl} {5 bl} {6 bl}
+	{7 bl} {8 bl} {9 bl} {10 bl} {11 bl} {12 bl} {13 bl} {14 bl} {gn bl}
+	{0 fl} {1 fl} {2 fl} {3 fl} {4 fl} {5 fl} {6 fl} {7 fl} {8 fl} {9 fl}
+	{10 fl} {11 fl} {12 fl} {13 fl} {14 fl} {gn fl}
+	] def
+	/sl FMLOCAL
+	/val FMLOCAL
+	/ws FMLOCAL
+	/im FMLOCAL
+	/bs FMLOCAL
+	/cs FMLOCAL
+	/len FMLOCAL
+	/pos FMLOCAL
+/ms { 
+	/sl exch def 
+	/val 255 def 
+	/ws cfs 
+	/im cfs 
+	/val 0 def 
+	/bs cfs 
+	/cs cfs 
+	} bind def
+400 ms 
+/ip { 
+	is 
+	0 
+	cf cs readline pop 
+	{	ic exch get exec 
+		add 
+		} forall 
+	pop 
+	
+	} bind def
+/wh { 
+	/len exch def 
+	/pos exch def 
+	ws 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/bl { 
+	/len exch def 
+	/pos exch def 
+	bs 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/s1 1 string def
+/fl { 
+	/len exch def 
+	/pos exch def 
+	/val cf s1 readhexstring pop 0 get def
+	pos 1 pos len add 1 sub {im exch val put} for
+	pos len 
+	} bind def
+/hx { 
+	3 copy getinterval 
+	cf exch readhexstring pop pop 
+	} bind def
+	/h FMLOCAL
+	/w FMLOCAL
+	/d FMLOCAL
+	/lb FMLOCAL
+	/bitmapsave FMLOCAL
+	/is FMLOCAL
+	/cf FMLOCAL
+/wbytes { 
+	dup 
+	8 eq {pop} {1 eq {7 add 8 idiv} {3 add 4 idiv} ifelse} ifelse
+	} bind def
+/BEGINBITMAPBWc { 
+	1 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAPGRAYc { 
+	8 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAP2BITc { 
+	2 {} COMMONBITMAPc
+	} bind def
+/COMMONBITMAPc { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	r                    
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} image 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BEGINBITMAPBW { 
+	1 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAPGRAY { 
+	8 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAP2BIT { 
+	2 {} COMMONBITMAP
+	} bind def
+/COMMONBITMAP { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	r                    
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{cf is readhexstring pop} image
+	bitmapsave restore 
+	grestore
+	} bind def
+	/proc1 FMLOCAL
+	/proc2 FMLOCAL
+	/newproc FMLOCAL
+/Fmcc {
+    /proc2 exch cvlit def
+    /proc1 exch cvlit def
+    /newproc proc1 length proc2 length add array def
+    newproc 0 proc1 putinterval
+    newproc proc1 length proc2 putinterval
+    newproc cvx
+} bind def
+/ngrayt 256 array def
+/nredt 256 array def
+/nbluet 256 array def
+/ngreent 256 array def
+	/gryt FMLOCAL
+	/blut FMLOCAL
+	/grnt FMLOCAL
+	/redt FMLOCAL
+	/indx FMLOCAL
+	/cynu FMLOCAL
+	/magu FMLOCAL
+	/yelu FMLOCAL
+	/k FMLOCAL
+	/u FMLOCAL
+/colorsetup {
+	currentcolortransfer
+	/gryt exch def
+	/blut exch def
+	/grnt exch def
+	/redt exch def
+	0 1 255 {
+		/indx exch def
+		/cynu 1 red indx get 255 div sub def
+		/magu 1 green indx get 255 div sub def
+		/yelu 1 blue indx get 255 div sub def
+		/k cynu magu min yelu min def
+		/u k currentundercolorremoval exec def
+		nredt indx 1 0 cynu u sub max sub redt exec put
+		ngreent indx 1 0 magu u sub max sub grnt exec put
+		nbluet indx 1 0 yelu u sub max sub blut exec put
+		ngrayt indx 1 k currentblackgeneration exec sub gryt exec put
+	} for
+	{255 mul cvi nredt exch get}
+	{255 mul cvi ngreent exch get}
+	{255 mul cvi nbluet exch get}
+	{255 mul cvi ngrayt exch get}
+	setcolortransfer
+	{pop 0} setundercolorremoval
+	{} setblackgeneration
+	} bind def
+	/tran FMLOCAL
+/fakecolorsetup {
+	/tran 256 string def
+	0 1 255 {/indx exch def 
+		tran indx
+		red indx get 77 mul
+		green indx get 151 mul
+		blue indx get 28 mul
+		add add 256 idiv put} for
+	currenttransfer
+	{255 mul cvi tran exch get 255.0 div}
+	exch Fmcc settransfer
+} bind def
+/BITMAPCOLOR { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	colorsetup
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{cf is readhexstring pop} {is} {is} true 3 colorimage 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPCOLORc { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	colorsetup
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} {is} {is} true 3 colorimage
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPTRUECOLORc { 
+        gsave
+        translate rotate scale /h exch def /w exch def
+        /bitmapsave save def 
+        
+        /is w string def
+        
+        ws 0 w getinterval is copy pop 
+        /cf currentfile def 
+        w h 8 [w 0 0 h neg 0 h] 
+        {ip} {gip} {bip} true 3 colorimage
+        bitmapsave restore 
+        grestore
+        } bind def
+/BITMAPTRUECOLOR { 
+        gsave
+        translate rotate scale /h exch def /w exch def
+        /bitmapsave save def 
+        /is w string def
+        /gis w string def
+        /bis w string def
+        /cf currentfile def 
+        w h 8 [w 0 0 h neg 0 h] 
+        { cf is readhexstring pop } 
+        { cf gis readhexstring pop } 
+        { cf bis readhexstring pop } 
+        true 3 colorimage 
+        bitmapsave restore 
+        grestore
+        } bind def
+/BITMAPTRUEGRAYc { 
+        gsave
+        translate rotate scale /h exch def /w exch def
+        /bitmapsave save def 
+        
+        /is w string def
+        
+        ws 0 w getinterval is copy pop 
+        /cf currentfile def 
+        w h 8 [w 0 0 h neg 0 h] 
+        {ip gip bip w gray} image
+        bitmapsave restore 
+        grestore
+        } bind def
+/ww FMLOCAL
+/r FMLOCAL
+/g FMLOCAL
+/b FMLOCAL
+/i FMLOCAL
+/gray { 
+        /ww exch def
+        /b exch def
+        /g exch def
+        /r exch def
+        0 1 ww 1 sub { /i exch def r i get .299 mul g i get .587 mul
+			b i get .114 mul add add r i 3 -1 roll floor cvi put } for
+        r
+        } bind def
+/BITMAPTRUEGRAY { 
+        gsave
+        translate rotate scale /h exch def /w exch def
+        /bitmapsave save def 
+        /is w string def
+        /gis w string def
+        /bis w string def
+        /cf currentfile def 
+        w h 8 [w 0 0 h neg 0 h] 
+        { cf is readhexstring pop 
+          cf gis readhexstring pop 
+          cf bis readhexstring pop w gray}  image
+        bitmapsave restore 
+        grestore
+        } bind def
+/BITMAPGRAY { 
+	8 {fakecolorsetup} COMMONBITMAP
+	} bind def
+/BITMAPGRAYc { 
+	8 {fakecolorsetup} COMMONBITMAPc
+	} bind def
+/ENDBITMAP {
+	} bind def
+end 
+	/ALDsave FMLOCAL
+	/ALDmatrix matrix def ALDmatrix currentmatrix pop
+/StartALD {
+	/ALDsave save def
+	 savematrix
+	 ALDmatrix setmatrix
+	} bind def
+/InALD {
+	 restorematrix
+	} bind def
+/DoneALD {
+	 ALDsave restore
+	} bind def
+%%EndProlog
+%%BeginSetup
+(3.0) FMVERSION
+1 1 612 792 0 1 3 FMDOCUMENT
+0 0 /Times-Bold FMFONTDEFINE
+1 0 /Times-Roman FMFONTDEFINE
+32 FMFILLS
+0 0 FMFILL
+1 0.1 FMFILL
+2 0.3 FMFILL
+3 0.5 FMFILL
+4 0.7 FMFILL
+5 0.9 FMFILL
+6 0.97 FMFILL
+7 1 FMFILL
+8 <0f1e3c78f0e1c387> FMFILL
+9 <0f87c3e1f0783c1e> FMFILL
+10 <cccccccccccccccc> FMFILL
+11 <ffff0000ffff0000> FMFILL
+12 <8142241818244281> FMFILL
+13 <03060c183060c081> FMFILL
+14 <8040201008040201> FMFILL
+16 1 FMFILL
+17 0.9 FMFILL
+18 0.7 FMFILL
+19 0.5 FMFILL
+20 0.3 FMFILL
+21 0.1 FMFILL
+22 0.03 FMFILL
+23 0 FMFILL
+24 <f0e1c3870f1e3c78> FMFILL
+25 <f0783c1e0f87c3e1> FMFILL
+26 <3333333333333333> FMFILL
+27 <0000ffff0000ffff> FMFILL
+28 <7ebddbe7e7dbbd7e> FMFILL
+29 <fcf9f3e7cf9f3f7e> FMFILL
+30 <7fbfdfeff7fbfdfe> FMFILL
+%%EndSetup
+%%Page: "1" 1
+%%BeginPaperSize: Letter
+%%EndPaperSize
+612 792 0 FMBEGINPAGE
+0 18 Q
+0 X
+0 K
+(IWLS\32593 Benchmark Set: V) 161.16 672 T
+(ersion 4.0) 376.88 672 T
+(Ken McElvain) 250.28 636 T
+(Mentor Graphics) 239.29 600 T
+0 14 Q
+(15May93) 278.41 566.67 T
+(1\051) 72 464.67 T
+(Intr) 93.6 464.67 T
+(oduction) 117.44 464.67 T
+1 12 Q
+(The purpose of IWLS benchmarks is to provide a way for researchers to evaluate their optimiza-) 72 445 T
+-0.03 (tion techniques. T) 72 431 P
+-0.03 (o be useful the benchmarks need to have relevance to real designs. Since this is) 157.38 431 P
+(a moving tar) 72 417 T
+(get, the benchmarks need periodic updates. New benchmarks have been added to) 132.41 417 T
+-0.21 (address new issues such as hierarchy) 72 403 P
+-0.21 (, size, partitioning problems, level sensitive timing, gating of) 247.04 403 P
+(clocks and retiming.) 72 389 T
+(The benchmarks are provided in a restricted EDIF format instead of blif or slif as in previous) 72 361 T
+-0.27 (years. Finite state machines \050FSMs\051 are additionally provided in kiss format, and two level and/or) 72 347 P
+(examples \050PLAs\051 in espresso format. The benchmarks come with a C parsing library and three) 72 333 T
+-0.03 (applications that use the library) 72 319 P
+-0.03 (. The applications are an EDIF to BLIF or SLIF translator) 221.68 319 P
+-0.03 (, a simu-) 498.41 319 P
+(lator for verifying optimization results, and a report generator that collects statistics about a) 72 305 T
+(netlist.) 72 291 T
+(Each benchmark is accompanied by a test pattern \336le for veri\336cation which can be used with the) 72 263 T
+(included simulator) 72 249 T
+(. While this does not prove that the result of optimization satis\336es the input) 160.96 249 T
+(netlist \050which may contain don\325) 72 235 T
+(t cares\051, it does provide a reasonable level of checking. The test) 224.35 235 T
+(pattern \336les avoid the don\325) 72 221 T
+(t care conditions.) 200.37 221 T
+(This release also includes an update of the tar) 72 193 T
+(get library) 290.28 193 T
+(. Sequential cells with asynchronous sets) 339.13 193 T
+(and resets were added to make it easier to include industrial sequential circuits. A few cells with) 72 179 T
+(multiple outputs were added to broaden the technology mapping opportunities.) 72 165 T
+FMENDPAGE
+%%EndPage: "1" 2
+%%Page: "2" 2
+612 792 0 FMBEGINPAGE
+0 14 Q
+0 X
+0 K
+(2\051) 72 682.67 T
+(Navigating About the Benchmark Release) 93.6 682.67 T
+1 12 Q
+(iwls93/) 72 663 T
+(lib/) 108 649 T
+(- T) 216 649 T
+(ar) 229.48 649 T
+(get technology information.) 238.58 649 T
+(iwls93.e) 144 635 T
+(- The EDIF description of the tar) 216 635 T
+(get library) 373.67 635 T
+(.) 422.51 635 T
+(iwls93.mis2lib) 144 621 T
+(- An incomplete tar) 216 621 T
+(get library description.) 309.38 621 T
+(iwls93.models) 144 607 T
+(- A complete tar) 216 607 T
+(get library description.) 294.05 607 T
+(testcases) 108 593 T
+(- All test cases and test patterns.) 216 593 T
+(tv/) 144 579 T
+(- One test pattern \336le for every EDIF \336le.) 216 579 T
+(edif/) 144 565 T
+(- Every test case is available in EDIF) 216 565 T
+(.) 393.24 565 T
+(pla/) 144 551 T
+(- T) 216 551 T
+(wo level testcases are also available as espresso pla \336les.) 229.48 551 T
+(fsm/) 144 537 T
+(- Finite state machines are also available as kiss \336les.) 216 537 T
+(src/) 108 523 T
+(- Source for the benchmark tools.) 216 523 T
+(Make\336le) 144 509 T
+(- T) 216 509 T
+(op level make\336le for all tools.) 229.48 509 T
+(edifparse/) 144 495 T
+(- Source for EDIF parser) 216 495 T
+(.) 334.57 495 T
+(netlist/) 144 481 T
+(- Netlist data structures and action routines for parser) 216 481 T
+(.) 470.48 481 T
+(esim/) 144 467 T
+(- EDIF netlist simulator) 216 467 T
+(.) 329.61 467 T
+(e2fmt/) 144 453 T
+(- EDIF to {EDIF) 216 453 T
+(,SLIF) 296.42 453 T
+(,BLIF} format translator) 323.11 453 T
+(.) 440.47 453 T
+(erprt/) 144 439 T
+(- Netlist report generator) 216 439 T
+(.) 334.24 439 T
+(bin/) 108 425 T
+(- Location where src Make\336le installs tools.) 216 425 T
+(doc/) 108 411 T
+(- Documentation \336les.) 216 411 T
+(iwls93.ps) 144 397 T
+(- Postscript version of this \336le.) 216 397 T
+0 14 Q
+(3\051) 72 367.67 T
+(Libraries) 93.6 367.67 T
+(3.1\051) 72 318.67 T
+(The Generic Library) 100.8 318.67 T
+1 12 Q
+(The \336rst library is a library of generic, technology independent gates. These generic gates are) 72 299 T
+(used in the representation of the benchmarks and in modeling of the tar) 72 285 T
+(get library cells. Gates) 413.54 285 T
+(included in the generic library are:) 72 271 T
+(TRUE -) 108 243 T
+(Outputs a logic 1) 180 243 T
+(F) 108 229 T
+(ALSE -) 113.78 229 T
+(Outputs a logic 0) 180 229 T
+(DC -) 108 215 T
+(Outputs a don\325) 180 215 T
+(t care) 251.07 215 T
+(BUF -) 108 201 T
+(Buf) 180 201 T
+(fer) 197.77 201 T
+(INV -) 108 187 T
+(Inverter) 180 187 T
+(TRI -) 108 173 T
+(T) 180 173 T
+(ristate buf) 186.91 173 T
+(fer) 234.99 173 T
+(AND -) 108 159 T
+(Arbitrary width AND gate) 180 159 T
+(OR -) 108 145 T
+(Arbitrary width OR gate) 180 145 T
+(XOR -) 108 131 T
+(Arbitrary width XOR gate) 180 131 T
+(MUX2 -) 108 117 T
+(2 way multiplexor) 180 117 T
+(LA) 108 103 T
+(TCH -) 122.66 103 T
+(T) 180 103 T
+(ransparent latch) 186.91 103 T
+(LA) 108 89 T
+(TCHS -) 122.66 89 T
+(T) 180 89 T
+(ransparent latch with asynchronous set) 186.91 89 T
+FMENDPAGE
+%%EndPage: "2" 3
+%%Page: "3" 3
+612 792 0 FMBEGINPAGE
+1 12 Q
+0 X
+0 K
+(LA) 108 712 T
+(TCHR -) 122.66 712 T
+(T) 180 712 T
+(ransparent latch with asynchronous reset) 186.91 712 T
+(LA) 108 698 T
+(TCHSR -) 122.66 698 T
+(T) 180 698 T
+(ransparent latch with asynchronous set and reset) 186.91 698 T
+(DFF -) 108 684 T
+(D \337ip-\337op) 181 684 T
+(DFFS -) 108 670 T
+(D \337ip-\337op with asynchronous set) 180 670 T
+(DFFR -) 108 656 T
+(D \337ip-\337op with asynchronous reset) 180 656 T
+(DFFSR -) 108 642 T
+(D \337ip-\337op with asynchronous set and reset) 180 642 T
+(All the generic gates have active-high inputs. For the \337ip-\337ops and latches set and reset have pri-) 72 614 T
+(ority over the clocked input. If both set and reset are on, then the output is a don\325) 72 600 T
+(t care.) 459.84 600 T
+0 14 Q
+(3.2\051) 72 556.67 T
+(The T) 100.8 556.67 T
+(arget Library) 135.67 556.67 T
+1 12 Q
+(The tar) 72 537 T
+(get library for this release of the benchmarks is based on the lib3 from IWLS\32591. It has) 106.08 537 T
+-0.1 (been extended with new cells implementing transparent latches and edge triggered \337ip-\337ops with) 72 523 P
+(asynchronous sets and resets. In accordance with what is usually found in ASIC libraries, these) 72 509 T
+-0.33 (cells have complimentary outputs. A set of tristate drivers were added including inverting and per-) 72 495 P
+(formance versions. In addition, a few multi-output combinational cells were added, again along) 72 481 T
+(the lines of cells found in ASIC libraries. These cells include a half-adder) 72 467 T
+(, full-adder) 424.26 467 T
+(, and a 2-4) 477.07 467 T
+(decoder) 72 453 T
+(. Lib1 and Lib2 from previous releases are not included in this release.) 109.3 453 T
+(The tar) 72 425 T
+(get technology library is provided as an EDIF \336le called \322.../iwls93/lib/iwls93.e\323 which) 106.08 425 T
+(contains a netlist for each technology gate. The netlist is built out of generic logic gates and is a) 72 411 T
+(valid logic model for the technology gate. Input pins of the logic model view have capacitance) 72 397 T
+(annotated as a property) 72 383 T
+(. Output pins have a maximum capacitance property) 182.79 383 T
+(, and an area property) 432.5 383 T
+(is annotated onto the logic model view) 72 369 T
+(. These values are used by a report generator described) 257.11 369 T
+(later) 72 355 T
+(.) 92.65 355 T
+(In addition to the iwls93.e EDIF description a complete tar) 72 327 T
+(get library description is provided in) 354.27 327 T
+(the \336le iwls93.models. This \336le contains timing information for all the cells including multi-out-) 72 313 T
+(put and sequential cells. The format is de\336ned in a comment at the top of the \336le.) 72 299 T
+(The library is also included in the misII format. Cells not representable in this format were omit-) 72 271 T
+(ted from the misII format. This \336le is a corrected version of the lib3.mis2lib \336le release in \32491.) 72 257 T
+-0.17 (The corrections af) 72 243 P
+-0.17 (fect the timing data for four of the cells. QEO and QEN had incorrect input and) 158.69 243 P
+(output edge relationships. EO and EN had unreasonably lar) 72 229 T
+(ge load coef) 356.58 229 T
+(\336cients.) 414.98 229 T
+0 14 Q
+(4\051) 72 199.67 T
+(The Benchmarks) 93.6 199.67 T
+1 12 Q
+-0.25 (All the benchmarks are available in EDIF format. Each EDIF \336le is accompanied by a test pattern) 72 180 P
+(\336le in the parallel \322tv\323 directory that can be used to verify optimization results.) 72 166 T
+(For those test cases where the original source was a pla, the equivalent pla may be found in the) 72 138 T
+-0.4 (parallel directory \322pla\323. All don\325) 72 124 P
+-0.4 (t care information that was present in the pla \336le is also present in) 227.08 124 P
+(the EDIF netlist.) 72 110 T
+-0.04 (For those test cases that were originally an fsm, the equivalent kiss \336le may be found in the paral-) 72 82 P
+FMENDPAGE
+%%EndPage: "3" 4
+%%Page: "4" 4
+612 792 0 FMBEGINPAGE
+1 12 Q
+0 X
+0 K
+-0.19 (lel directory \322fsm\323. Again, all don\325) 72 712 P
+-0.19 (t care information that was present in the fsm is also present in) 239.03 712 P
+(the EDIF netlist.) 72 698 T
+(All benchmarks from the \32491 benchmark set are included in this release. A few benchmarks have) 72 670 T
+(been moved to the directories \322fsm.bad\323 and \322edif.bad\323. This was done when the benchmark as) 72 656 T
+(speci\336ed was provably uninitializable. When we say that a benchmark circuit is uninitializable,) 72 642 T
+(we mean that it lacks an initializing sequence. W) 72 628 T
+(e do not mean that it won\325) 305.87 628 T
+(t initialize in a simula-) 431.57 628 T
+(tor) 72 614 T
+(. Several of the good benchmarks will fail to initialize in a simulator) 84.67 614 T
+(. The simulator provided) 411.46 614 T
+(with this release has a pseudo-random initialization option to deal with such circuits.) 72 600 T
+0 14 Q
+(5\051) 72 570.67 T
+(T) 93.6 570.67 T
+(ools) 101.65 570.67 T
+1 12 Q
+-0.07 (The benchmarks come with a tool-set for reading and verifying the synthesis results. The tool-set) 72 551 P
+(includes a format converter) 72 537 T
+(, a simulator) 203.08 537 T
+(, a report generator) 262.23 537 T
+(, and a parsing library for linking in) 352.99 537 T
+(other tools. An important tool that is missing is a timing veri\336er) 72 523 T
+(.) 377.86 523 T
+-0.09 (If you invoke a tool without ar) 72 495 P
+-0.09 (guments, it will respond with a description of the available options) 217.83 495 P
+(and ar) 72 481 T
+(guments.) 101.42 481 T
+(All of the tools will directly read compressed input \336les.) 72 453 T
+0 14 Q
+(5.1\051) 72 423.67 T
+(E2fmt - An EDIF to other format converter) 100.8 423.67 T
+(.) 359.46 423.67 T
+1 12 Q
+-0.2 (E2fmt takes as input a set of EDIF netlist \336les and converts the view named user_lib.top.netlist to) 72 404 P
+-0.2 (another format. Supported output formats are EDIF) 72 390 P
+-0.2 (, SLIF) 316.67 390 P
+-0.2 (, and BLIF) 346.17 390 P
+-0.2 (. There are options for \337atten-) 397.11 390 P
+(ing the hierarchy to a single level netlist and for loading the \336le \322.../iwls93/lib/iwls93.e\323, which) 72 376 T
+(contains de\336nitions of the tar) 72 362 T
+(get technology gates.) 211.7 362 T
+(E2fmt is provided to maintain compatibility with users of previous releases of the benchmarks.) 72 334 T
+(One should note however that the BLIF and SLIF \336les produced will not be identical in detail to) 72 320 T
+(the originals and that this will likely lead to \050hopefully small\051 dif) 72 306 T
+(ferences in results for the older) 382.61 306 T
+(benchmarks that have been converted to EDIF and then back to BLIF) 72 292 T
+(.) 404.46 292 T
+0 14 Q
+(5.2\051) 72 262.67 T
+(Esim - An EDIF Unit Delay Simulator) 100.8 262.67 T
+(.) 327.28 262.67 T
+1 12 Q
+(Esim is a simple event driven simulator that takes as input an EDIF netlist and a test pattern \336le.) 72 243 T
+(The input netlist is again expected to be named user_lib.top.netlist. This netlist is \337attened down) 72 229 T
+(to the generic logic primitives, which esim has simulation models for) 72 215 T
+(, then the simulation is run,) 403.65 215 T
+(printing a trace of input and output values. The test pattern \336le contains both input stimulus and) 72 201 T
+(expected results. Any mismatches between the simulation and the expected results are \337agged.) 72 187 T
+-0.25 (The exit status indicates the presence of any mismatches. Esim has an option to suppress the trace) 72 173 P
+(for regression test purposes.) 72 159 T
+-0.42 (Esim is intended to give users of the benchmarks a relatively easy way to verify the results of their) 72 131 P
+-0.09 (optimizations. The only requirement is that they be able to write a suitable EDIF netlist after opti-) 72 117 P
+(mization. Note that this veri\336cation is not a formal veri\336cation, but it will \336nd most problems.) 72 103 T
+FMENDPAGE
+%%EndPage: "4" 5
+%%Page: "5" 5
+612 792 0 FMBEGINPAGE
+1 12 Q
+0 X
+0 K
+(One issue that might be encountered is the initialization of state elements. There are a number of) 72 712 T
+(cases where one can prove that a given state element must initialize, but a logic simulator will) 72 698 T
+(conservatively assign an X. The \336gure below illustrates a circuit with this problem. If the DFF is) 72 684 T
+(currently in the X state and J=1, and K=0, then the JK circuit should set. Simulating a gate at a) 72 670 T
+-0.14 (time, however) 72 656 P
+-0.14 (, will leave the circuit stuck at X. T) 139.99 656 P
+-0.14 (o get around this problem, esim has an option to) 307.23 656 P
+(do random initialization of state elements. This option should be considered when esim reports a) 72 642 T
+(miscompare between a simulated X and an expected 1 or 0. It is recommended that esim be run) 72 628 T
+(several time with dif) 72 614 T
+(ferent random seeds if this option is used.) 170.72 614 T
+-0.08 (The test pattern \336le format used is very simple. It is free format with # to end of line being a com-) 72 461.67 P
+(ment. There are 4 commands, all terminated with a \324;\325:) 72 447.67 T
+(t <number>;) 99.17 419.67 T
+(Advances time to the integer value <number>.) 215.83 419.67 T
+(f <portname> [01ZX];) 99.17 405.67 T
+(Force <portname> to have the given value.) 215.83 405.67 T
+(q <clkname> [01ZX];) 99.17 391.67 T
+(Force <clkname> to a value with priority over \322f\323 commands at the) 215.83 391.67 T
+(same time.) 215.83 377.67 T
+(c <portname> [01ZX];) 99.17 363.67 T
+(Check that <portname> has the expected value.) 215.83 363.67 T
+(e;) 99.17 349.67 T
+(End the test pattern \336le.) 215.83 349.67 T
+(The q command is used to avoid hold time problems between input assertions and clock changes.) 72 321.67 T
+0 14 Q
+(5.3\051) 72 292.33 T
+(Erprt - An EDIF based netlist r) 100.8 292.33 T
+(eport generator) 288.66 292.33 T
+(.) 381.01 292.33 T
+1 12 Q
+(Erprt is a report generator that reads an EDIF netlist and reports statistics about that netlist. The) 72 272.67 T
+-0.27 (report displays total cell area, a histogram of number of connections per net, a histogram of capac-) 72 258.67 P
+(itance per net, and a list of capacitance limit violations.) 72 244.67 T
+0 14 Q
+(6\051) 72 201.33 T
+(Reporting) 93.6 201.33 T
+1 12 Q
+-0.06 (If your use of the benchmarks involves mapping into the provided technology) 72 181.67 P
+-0.06 (, you should follow) 443.96 181.67 P
+(some measurement and reporting guidelines.) 72 167.67 T
+(Primary input drive, and capacitance limits should be derived from the Q output of the FF primi-) 72 139.67 T
+(tive supplied in the tar) 72 125.67 T
+(get library) 179.05 125.67 T
+(. Primary output loading should have the same values as the D) 227.9 125.67 T
+(input load of the FF) 72 111.67 T
+(. A \322legal\323 circuit should not violate the capacitance limits of the drivers of) 166.33 111.67 T
+(any nets in the netlist. V) 72 97.67 T
+(iolations can be detected and reported by Erprt for your convenience.) 187.88 97.67 T
+72 485.67 483.17 596 C
+304.17 509.17 331.67 560 R
+0.5 H
+2 Z
+0 X
+0 K
+N
+331.67 533.33 375 533.33 2 L
+N
+363.33 533.33 363.33 575 2 L
+N
+0 90 17.14 10.71 274.29 532.14 A
+304.29 533.57 292.14 533.57 2 L
+N
+270 360 17.14 10.71 274.54 533.11 A
+270 360 3.5 10.5 272.5 532.5 A
+0 90 3 12 273 531 A
+0 90 11 8.5 246.5 545.5 A
+270 360 11 8.5 246.5 546 A
+246.5 554 240 554 2 L
+N
+246 538 239.5 538 2 L
+N
+240.5 554 240.5 538 2 L
+N
+0 90 11 8.5 247 519 A
+270 360 11 8.5 247 519.5 A
+247 527.5 240.5 527.5 2 L
+N
+246.5 511.5 240 511.5 2 L
+N
+241 527.5 241 511.5 2 L
+N
+257.5 519.5 264.5 519.5 2 L
+N
+257 546 264 546 2 L
+N
+275.5 536.5 264 536.5 2 L
+N
+275.5 528 264 528 2 L
+N
+264 536.5 264 546 2 L
+N
+264.5 519.5 264.5 528 2 L
+N
+363.5 575 228.5 575 2 L
+N
+90 450 1.75 2 239.25 515.5 A
+90 450 1.75 2 238.75 550 A
+228.5 575 228.5 523.5 2 L
+N
+228.5 550.5 237 550.5 2 L
+N
+228.5 523.5 241 523.5 2 L
+N
+240.5 542 207 542 2 L
+N
+237.5 516 206.5 516 2 L
+N
+317.5 509 317.5 499 2 L
+N
+317.5 499 206.5 499 2 L
+N
+1 12 Q
+(J) 199.5 543 T
+(K) 198 518 T
+(C) 198.5 500.5 T
+(Q) 374 538 T
+314.5 509 317.5 514.5 2 L
+N
+321 509 318 514.5 2 L
+N
+0 0 612 792 C
+FMENDPAGE
+%%EndPage: "5" 6
+%%Page: "6" 6
+612 792 0 FMBEGINPAGE
+1 12 Q
+0 X
+0 K
+-0.34 (Delay values reported should include the primary input drive values and the ef) 72 712 P
+-0.34 (fects of the primary) 444.1 712 P
+(output loads. The circuit should be modeled as in a test jig made up of technology FF cells at the) 72 698 T
+(inputs and outputs.) 72 684 T
+(V) 72 656 T
+(alues of interest in a report are the instance count, number of nets, total gate area, average and) 79.33 656 T
+(peak number of connections per net, average and peak capacitance per net, and of course delay) 72 642 T
+(.) 526.48 642 T
+(Most of these values are available from Erprt.) 72 628 T
+0 14 Q
+(7\051) 72 598.67 T
+(Acknowledgments) 93.6 598.67 T
+1 12 Q
+(Most of the benchmarks have been drawn from previous benchmark sets [yang91] and) 72 579 T
+([lisanke89].) 72 565 T
+-0.22 (Conversion of benchmarks to the EDIF format and preparation of test pattern \336les for veri\336cation) 72 537 P
+(was done by David Rickel.) 72 523 T
+0 14 Q
+(8\051) 72 493.67 T
+(Refer) 93.6 493.67 T
+(ences) 126.75 493.67 T
+1 12 Q
+-0.34 ([yang91] Saeyang Y) 72 474 P
+-0.34 (ang, Logic Synthesis and Optimization Benchmarks User Guide: V) 168.7 474 P
+-0.34 (ersion 3.0,) 487.39 474 P
+(Distributed as part of the IWLS91 benchmark distribution.) 72 460 T
+([lisanke89] Robert Lisanke, Logic Synthesis and Optimization Benchmarks User Guide: V) 72 432 T
+(ersion) 506.71 432 T
+(2.0, T) 72 418 T
+(echnical Report, Microelectronics Center of North Carolina, Dec. 1988.) 99.48 418 T
+([EDIF] EDIF Reference Manual V) 72 390 T
+(ersion 2.0.0 .) 237.86 390 T
+FMENDPAGE
+%%EndPage: "6" 7
+%%Trailer
+%%BoundingBox: 0 0 612 792
+%%Pages: 6 1
+%%DocumentFonts: Times-Bold
+%%+ Times-Roman
