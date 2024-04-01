@@ -7,14 +7,12 @@ static char copyright[] = "Copyright (C) 1993 Mentor Graphics Corporation";
 #include <sys/param.h>
 #include <string.h>
 #define DECL /**/
-#include "nets.h"
-#include "token.h"
+#include "esim.h"
 
 char dbg[256] = { 0 };
 extern int ex_verbose;
 
-static void usage()
-{
+static void usage(void) {
 	fprintf(stderr, "Usage: esim [-flags] netlist.e [patterns.tv]\n");
 	fprintf(stderr, "Flags:\n");
 	fprintf(stderr, "    s   - silent, suppresses trace\n");
@@ -27,10 +25,7 @@ static void usage()
 	exit(1);
 }
 
-main(argc, argv)
-int argc;
-char *argv[];
-{
+int main(int argc, char **argv) {
 	FILE *fp, *tfp;
 	view *vp;
 	char *cp, *zcp;
@@ -45,6 +40,9 @@ char *argv[];
 	if(argc == 1) usage();
 	if(argc > 1 && argv[1][0] == '-') {
 		for(cp = argv[1] + 1; *cp; cp++) {
+			if(!strcmp(cp, "help") || !strcmp(cp, "h")) {
+				usage();
+			}
 			c = *cp & 0xff;
 			switch(c) {
 			case 's':
@@ -114,4 +112,5 @@ char *argv[];
 
 	ep_clearnametab();
 	exit(rc ? 1 : 0);
+	return 0;
 }

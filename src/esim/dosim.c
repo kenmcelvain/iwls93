@@ -4,8 +4,7 @@ static char copyright[] = "Copyright (C) 1993 Mentor Graphics Corporation";
 #endif
 
 #define RCSHEADERS
-#include "nets.h"
-#include <varargs.h>
+#include "esim.h"
 
 extern long lrand48();
 
@@ -23,7 +22,7 @@ static int dotrace = TRUE;
 #define not(a)    (3 >> ((a) & 3))
 #define buffer(a) ((a) & 3)
 
-static void addevent();
+static void addevent(conn *ptp, int time, int value);
 
 static hashtable *ih, *nh, *ph;
 
@@ -41,15 +40,12 @@ static int curtime, errcnt;
 #define NUMPORTTYPES 3
 static view *porttypes[NUMPORTTYPES];
 
-fatal(va_alist)
-va_dcl
-{
+void fatal(const char *fmt, ...) {
 	va_list args;
-	char *fmt;
 
-	va_start(args);
+	va_start(args, fmt);
 	fprintf(stderr, "@%d: Fatal Error - ", curtime);
-	fmt = va_arg(args, char *);
+	// fmt = va_arg(args, char *);
 	vfprintf(stderr, fmt, args);
 	va_end(args);
 	fputc('\n', stderr);
@@ -57,9 +53,7 @@ va_dcl
 	exit(2);
 }
 
-char vname(v)
-int v;
-{
+char vname(int v) {
 	int ch;
 	switch(v) {
 	case V_HI:  ch = '1'; break;
@@ -71,10 +65,7 @@ int v;
 	return(ch);
 }
 
-static sim_reset(vp, seed)
-view *vp;
-int seed;
-{
+static void sim_reset(view *vp, int seed) {
 	int hidx;
 	net *np;
 	conn *cnp;
@@ -141,8 +132,7 @@ int seed;
 
 }
 
-static void printhead()
-{
+static void printhead(void) {
 	int pti, hidx;
 	view *pt;
 	instance *pp;
@@ -186,8 +176,7 @@ static void printhead()
  * Print an output line at the end of a time point if there
  * has been a change
  */
-static void printout()
-{
+static void printout(void) {
 	int col;
 	int hidx, doprint;
 	instance *pp;
@@ -227,11 +216,7 @@ brk:
 
 static event *free_ev = NIL;
 
-static void addevent(ptp, time, value)
-conn *ptp;
-int time;
-int value;
-{
+static void addevent(conn *ptp, int time, int value) {
 	event *e, **ep, *te;
 
 	ep = &eventlist;
@@ -255,14 +240,11 @@ int value;
 	*ep = e;
 }
 
-static void ueof()
-{
+static void ueof(void) {
 	fatal("Unexpected EOF file in test pattern file");
 }
 
-int sim_getc(tfp)
-FILE *tfp;
-{
+int sim_getc(FILE *tfp) {
 	register int ch;
 	while(1) {
 		ch = getc(tfp);
@@ -275,9 +257,7 @@ FILE *tfp;
 }
 
 
-int eatspace(tfp)
-FILE *tfp;
-{
+int eatspace(FILE *tfp) {
 	register int ch;
 	do {
 		ch = sim_getc(tfp);
@@ -286,9 +266,7 @@ FILE *tfp;
 	return(ch);
 }
 
-instance *getname(tfp)
-FILE *tfp;
-{
+instance *getname(FILE *tfp) {
 	int ch;
 	char *cp;
 	instance *pp;
@@ -309,9 +287,7 @@ FILE *tfp;
 	return(pp);
 }
 
-void readinput(tfp)
-FILE *tfp;
-{
+void readinput(FILE *tfp) {
 	int ch, v;
 	int time, delay;
 	instance *pp;
@@ -388,9 +364,7 @@ FILE *tfp;
 	}
 }
 
-void simoutput(e)
-event *e;
-{
+void simoutput(event *e) {
 	conn *ptp;
 	instance *ip;
 	net *np;
@@ -585,12 +559,7 @@ event *e;
 	}
 }
 
-dosim(vp, tfp, trace, seed)
-view *vp;
-FILE *tfp;
-int trace;
-int seed;
-{
+int dosim(view *vp, FILE *tfp, int trace, int seed) {
 	event *e;
 
 	dotrace = trace;
