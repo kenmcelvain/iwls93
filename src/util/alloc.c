@@ -6,8 +6,7 @@ static char copyright[] = "Copyright (C) 1993 Mentor Graphics Corporation";
 #include <stdlib.h>
 #include "util.h"
 
-void *u_malloc(size)
-int size;
+void *u_malloc(int size)
 {
 	void *p;
 
@@ -18,9 +17,7 @@ int size;
 	return(p);
 }
 
-void *u_realloc(p, size)
-void *p;
-int size;
+void *u_realloc(void *p, int size)
 {
 	void *q;
 
@@ -31,24 +28,21 @@ int size;
 	return(q);
 }
 
-void u_free(p)
-void *p;
+void u_free(void *p)
 {
 	if(!p) return;
-	if((int)p & 0x3) u_crash("u_free: misalligned free");
+	if((size_t)p & 0x3) u_crash("u_free: misalligned free");
 	free(p);
 }
 
-void *u_calloc(nelem, elsize)
-int nelem, elsize;
+void *u_calloc(int nelem, int elsize)
 {
 	if(nelem == 0 || elsize == 0) return(NIL);
 	if(nelem < 0 || elsize < 0) u_crash("u_calloc: bad size");
 	return(calloc(nelem, elsize));
 }
 
-char *u_strsave(str)
-char *str;
+char *u_strsave(const char *str)
 {
 	int len;
 	char *p;

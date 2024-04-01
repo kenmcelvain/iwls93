@@ -7,18 +7,11 @@ static char copyright[] = "Copyright (C) 1993 Mentor Graphics Corporation";
 #include <sys/file.h>
 #include <string.h>
 #include "util.h"
-#ifdef _HPUX_SOURCE
 #include <unistd.h>
-#else
-extern char *getwd();
-#endif
-
-extern char *getenv();
 
 static char *home = NIL;
 
-char *u_getwd()
-{
+char *u_getwd(void) {
 	char *d;
 	char curdir[MAXPATHLEN+2];
 #ifdef _HPUX_SOURCE
@@ -33,10 +26,8 @@ char *u_getwd()
 /*
  * Figure out where the program executable is stored
  */
-char *u_findhome(argv0)
-char *argv0;
-{
-	char *pp;
+char *u_findhome(const char *argv0) {
+	const char *pp;
 	char *xpath;
 	char *cp;
 	int len;

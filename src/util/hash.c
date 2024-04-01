@@ -7,9 +7,7 @@ static char copyright[] = "Copyright (C) 1993 Mentor Graphics Corporation";
 #include "util.h"
 #include "hash.h"
 
-static int computehash(ht, name)
-hashtable *ht;
-register char *name;
+static int computehash(hashtable *ht, const char *name)
 {
 	register unsigned int sum, sum2;
 
@@ -24,8 +22,7 @@ register char *name;
 	return((int)sum);
 }
 
-void hashinit(ht)
-hashtable *ht;
+void hashinit(hashtable *ht)
 {
 	int i;
 	ht->tsize = 32; /* auto-resize later */
@@ -35,9 +32,7 @@ hashtable *ht;
 	for(i = 0; i < ht->tsize; i++) ht->table[i] = NIL;
 }
 
-hashentry *hashfind(ht, name)
-hashtable *ht;
-char *name;
+hashentry *hashfind(hashtable *ht, const char *name)
 {
 	register hashentry *he;
 
@@ -47,9 +42,7 @@ char *name;
 	return(he);
 }
 
-int hashinsert_f(ht, nhe)
-hashtable *ht;
-hashentry *nhe;
+int hashinsert_f(hashtable *ht, hashentry *nhe)
 {
 	int h;
 	hashentry *he;
@@ -67,9 +60,7 @@ hashentry *nhe;
 	return(SUCCESS);
 }
 
-int hashdelete_f(ht, nhe)
-hashtable *ht;
-hashentry *nhe;
+int hashdelete_f(hashtable *ht, hashentry *nhe)
 {
 	int h;
 	hashentry **phe;

@@ -9,7 +9,7 @@ static char copyright[] = "Copyright (C) 1993 Mentor Graphics Corporation";
 #include <sys/time.h>
 #endif
 
-long u_currenttime()
+long u_currenttime(void)
 {
 	struct timeval t;
 
@@ -17,8 +17,7 @@ long u_currenttime()
 	return(t.tv_sec);
 }
 
-char *u_timestring(time)
-long time;
+char *u_timestring(long time)
 {
 	return(ctime(&time));
 }

@@ -26,3 +26,6 @@ typedef struct _hashtable {
 		for(Zvar = (Ztype)((Zht)->table[Zidx]); Zvar; Zvar=(Ztype)(Zvar->h.next))
 
 #endif
+
+void hashinit(hashtable *ht);
+int hashinsert_f(hashtable *ht, hashentry *nhe);

@@ -12,11 +12,9 @@ static char copyright[] = "Copyright (C) 1993 Mentor Graphics Corporation";
  * open a file for reading.  handle compressed (.Z) files.  return TRUE if
  * we popened the file
  */
-u_openr(path, fpp)
-char *path;
-FILE **fpp;
+int u_openr(const char *path, FILE **fpp)
 {
-	char *cp;
+	const char *cp;
 	FILE *fp;
 	static char strbuf[MAXPATHLEN+20];
 	static char zfile[MAXPATHLEN+3];	/* ick */
@@ -45,13 +43,11 @@ FILE **fpp;
 	return(OPEN_FAIL);
 }
 
-u_closer(fp, mode)
-FILE *fp;
-int mode;
+int u_closer(FILE *fp, int mode)
 {
 	switch(mode) {
 	case OPEN_FAIL:
-		break;
+		return(-1);
 	case OPEN_FILE:
 		return(fclose(fp));
 	case OPEN_PIPE:
