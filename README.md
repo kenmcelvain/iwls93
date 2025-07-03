@@ -1,6 +1,6 @@
 # International Workshop on Logic Synthesis 1993 (IWLS93) Benchmark Set
 
-It is 30 years later and new citations regularly appear today.  Back in 1993 while working at Mentor Graphics I put together this benchmark set and released it - with the kind permission of Mentor Graphics.  It combines previous input circuits with new circuits, including some larger multi-level circuits.
+It is 30 years later and new citations regularly appear today.  Back in 1993 while working at Mentor Graphics (Now part of Siemens) I put together this benchmark set and released it - with the kind permission of Mentor Graphics.  It combines previous input circuits with new circuits, including some larger multi-level circuits.
 
 The original download location at mcnc.mcnc.org no longer exists.
 
