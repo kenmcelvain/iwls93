@@ -3,11 +3,12 @@
 # Compute flags for different vendors
 #
 if [ -f /hp-ux ]; then
-	echo -g -z -D_HPUX_SOURCE
+	echo -O -g -z -D_HPUX_SOURCE
 	exit 0
 fi
 if [ -f /etc/aix ]; then
-	echo -D_POSIX_SOURCE -D_ALL_SOURCE
+	echo -O -D_POSIX_SOURCE -D_ALL_SOURCE
 	exit 0
 fi
+echo -O
 exit 0

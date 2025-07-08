@@ -5,12 +5,14 @@ static char util_rcsid[] = "$Header: util.h,v 1.3 93/03/02 01:11:16 drickel Exp 
 static char util_copyright[] = "Copyright (C) 1993 Mentor Graphics Corporation";
 #endif
 
+#define PATCHTIME 1  /* modern ctime uses time_t */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
 #include <string.h>
 #include <ctype.h>
+#include <time.h>
 
 #ifndef DECL
 #define DECL extern
@@ -31,8 +33,13 @@ void *u_realloc(void *p, int size);
 void *u_calloc(int nelem, int elsize);
 char *u_strsave(const char *str);
 void u_free(void *p);
+#ifdef PATCHTIME
+time_t u_currenttime(void);
+char *u_timestring(time_t time);
+#else
 long u_currenttime(void);
 char *u_timestring(long time);
+#endif
 char *u_findhome(const char *argv0);
 
 #define ZTNEW(typ,cnt) ((typ *)u_calloc((cnt),sizeof(typ)))

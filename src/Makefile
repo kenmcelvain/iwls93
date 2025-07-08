@@ -3,7 +3,7 @@
 # programs e2fmt esim and erprt
 #
 
-def:;  XCFLAGS="`getcflags`" $(MAKE) all
+def:;  XCFLAGS="`./getcflags`" $(MAKE) all
 
 install all:;
 	cd util; make

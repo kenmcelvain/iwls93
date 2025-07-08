@@ -3,6 +3,23 @@ static char rcsid[] = "$Header: time.c,v 1.3 93/02/22 11:54:13 kenm Exp $";
 static char copyright[] = "Copyright (C) 1993 Mentor Graphics Corporation";
 #endif
 
+// set in util.h .  modern ctime uses time_t type, not long
+
+#ifdef PATCHTIME
+#include <time.h>
+
+time_t u_currenttime(void)
+{
+	return time(NULL);
+}
+
+char *u_timestring(time_t time)
+{
+	return(ctime(&time));
+}
+
+#else
+
 #ifdef _HPUX_SOURCE
 #include <time.h>
 #else
@@ -21,3 +38,4 @@ char *u_timestring(long time)
 {
 	return(ctime(&time));
 }
+#endif
