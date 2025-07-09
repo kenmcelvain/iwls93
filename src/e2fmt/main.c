@@ -59,7 +59,7 @@ int main(int argc, char **argv) {
 		char pathbuf[MAXPATHLEN+1];
 
 		home = u_findhome(argv[0]);
-		sprintf(pathbuf, "%s/../lib/iwls93.e", home);
+		sprintf(pathbuf, "%s/../library/iwls93.e", home);
 		fp = fopen(pathbuf, "r");
 		if(fp) {
 			fprintf(stderr, "Loading lib %s\n", pathbuf);

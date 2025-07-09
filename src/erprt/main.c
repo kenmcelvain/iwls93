@@ -18,6 +18,7 @@ static void usage(void )
 {
 	fprintf(stderr, "Usage: erprt [-flags] file.edif\n");
 	fprintf(stderr, "Flags:\n");
+	fprintf(stderr, "       h   - generate this message, help message\n");
 	fprintf(stderr, "       v   - verbose\n");
 	exit(1);
 }
@@ -36,12 +37,13 @@ int main(int argc, char **argv) {
 		for(cp = argv[1] + 1; *cp; cp++) dbg[*cp & 0xff] = 1;
 		argc--; argv++;
 	}
+	if(dbg['h']) usage();
 	if(argc != 2) u_crash("Wrong number of args");
 
 	/* initialization */
 	netlist_init();
 
-	sprintf(pathbuf, "%s/../lib/iwls93.e", home);
+	sprintf(pathbuf, "%s/../library/iwls93.e", home);
 	fp = fopen(pathbuf, "r");
 	if(fp) {
 		printf("Loading lib %s\n", pathbuf);

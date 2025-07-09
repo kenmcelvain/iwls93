@@ -79,7 +79,7 @@ int main(int argc, char **argv) {
 	/* initialization */
 	netlist_init();
 
-	sprintf(strbuf, "%s/../lib/iwls93.e", home);
+	sprintf(strbuf, "%s/../library/iwls93.e", home);
 	status = u_openr(strbuf, &fp);
 	if(status != OPEN_FAIL) {
 		printf("Loading lib %s\n", strbuf);
